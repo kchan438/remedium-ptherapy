@@ -17,7 +17,7 @@
 |    :---:     |     :---:     |     :---:       |
 | member1      |               |                 |
 | member2      |               |                 |
-| member3      |               |                 |
+| Kevin Chan      | kchan17@sfsu.edu               | kchan438                |
 | Zi Collin Hua Zhen      | zzhen1@mail.sfsu.edu              |collinization                 |
 | member5      |               |                 |
 | member6      |               |                 |
