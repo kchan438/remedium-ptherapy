@@ -16,7 +16,7 @@
 | Student Name | Student Email | GitHub Username |
 |    :---:     |     :---:     |     :---:       |
 | member1      |               |                 |
-| member2      |               |                 |
+| Rinay Kumar      | rkumar4@mail.sfsu.edu               | rinaykumar                 |
 | Kevin Chan      | kchan17@sfsu.edu               | kchan438                |
 | Zi Collin Hua Zhen      | zzhen1@mail.sfsu.edu              |collinization                 |
 | member5      |               |                 |
