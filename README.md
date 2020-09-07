@@ -16,7 +16,7 @@
 | Student Name | Student Email | GitHub Username |
 |    :---:     |     :---:     |     :---:       |
 | Spencer Heltsley| sheltsle@mail.sfsu.edu | Spencer-Heltsley |
-| Rinay Kumar     | rkumar4@mail.sfsu.edu               | rinaykumar |
+|      |               |  |
 | Kevin Chan      | kchan17@sfsu.edu               | kchan438        |
 | Zi Collin Hua Zhen      | zzhen1@mail.sfsu.edu              |collinization                 |
 | Kolapo Agunbiade  |     Kagunbiade@mail.sfsu.edu           |  kagunbiade                |
