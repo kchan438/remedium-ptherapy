@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "first_name": "Darda",
+    "last_name": "Collocott",
+    "email": "dcollocott0@blog.com",
+    "gender": "Female",
+    "age": 85,
+    "phone": "5245365698",
+    "date_of_exercise": "2020-12-09T19:49:35Z"
+  },
+  {
+    "id": 2,
+    "first_name": "Licha",
+    "last_name": "Wharrier",
+    "email": "lwharrier1@webs.com",
+    "gender": "Female",
+    "age": 80,
+    "phone": "3488578554",
+    "date_of_exercise": "2020-10-27T07:36:54Z"
+  }
+]
