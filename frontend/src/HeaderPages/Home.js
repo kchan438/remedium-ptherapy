@@ -5,6 +5,8 @@ import { SortingTable } from "../components/SortingTable";
 import { FilteringTable } from "../components/FilteringTable";
 import { FTexercisePlan } from "../components/FTexercisePlan";
 import { FTprogressReport } from "../components/FTprogressReport";
+import { FTptActivity } from "../components/FTptActivity";
+
 import DynamicTable from "../DynamicTable";
 import expandedTable from "../components/expandedTable";
 
@@ -20,6 +22,8 @@ class Home extends Component {
         <FTexercisePlan />
         <h1>Progress Report Directory</h1>
         <FTprogressReport />
+        <h1>Physical Therapist Activity</h1>
+        <FTptActivity />
         <div></div>
       </div>
     );

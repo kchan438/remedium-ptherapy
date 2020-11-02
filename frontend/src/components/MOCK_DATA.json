@@ -1,22 +1,27 @@
 [
   {
-    "id": 1,
-    "first_name": "Darda",
-    "last_name": "Collocott",
-    "email": "dcollocott0@blog.com",
-    "gender": "Female",
-    "age": 85,
-    "phone": "5245365698",
-    "date_of_exercise": "2020-12-09T19:49:35Z"
+    "ptActivityId": 1,
+    "activityDes": "needs-based",
+    "timeAndDur": "2020-08-17T23:01:05Z"
   },
   {
-    "id": 2,
-    "first_name": "Licha",
-    "last_name": "Wharrier",
-    "email": "lwharrier1@webs.com",
-    "gender": "Female",
-    "age": 80,
-    "phone": "3488578554",
-    "date_of_exercise": "2020-10-27T07:36:54Z"
+    "ptActivityId": 2,
+    "activityDes": "capability",
+    "timeAndDur": "2020-09-30T01:30:18Z"
+  },
+  {
+    "ptActivityId": 3,
+    "activityDes": "next generation",
+    "timeAndDur": "2020-04-12T08:57:55Z"
+  },
+  {
+    "ptActivityId": 4,
+    "activityDes": "Synergistic",
+    "timeAndDur": "2019-11-09T14:21:31Z"
+  },
+  {
+    "ptActivityId": 5,
+    "activityDes": "parallelism",
+    "timeAndDur": "2020-08-15T15:09:22Z"
   }
 ]

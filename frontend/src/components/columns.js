@@ -24,29 +24,19 @@ export default function FetchData() {
 
 export const patientCOLUMNS = [
   {
-    Header: "ID",
-    accessor: "id",
+    Header: "User ID",
+    accessor: "User_ID",
     Filter: ColumnFilter,
     disableFilters: true,
   },
   {
     Header: "First Name",
-    accessor: "firstName",
+    accessor: "first_Name",
     Filter: ColumnFilter,
   },
   {
     Header: "Last Name",
-    accessor: "lastName",
-    Filter: ColumnFilter,
-  },
-  {
-    Header: "Age",
-    accessor: "age",
-    Filter: ColumnFilter,
-  },
-  {
-    Header: "Bio",
-    accessor: "bio",
+    accessor: "last_Name",
     Filter: ColumnFilter,
   },
   {
@@ -55,8 +45,13 @@ export const patientCOLUMNS = [
     Filter: ColumnFilter,
   },
   {
-    Header: "Physical Therapist ID",
-    accessor: "ptID",
+    Header: "Bio",
+    accessor: "bio",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Registration Date",
+    accessor: "Registration_Date",
     Filter: ColumnFilter,
   },
 ];
@@ -64,72 +59,130 @@ export const patientCOLUMNS = [
 export const exerciseCOLUMNS = [
   {
     Header: "Exercise Plan ID",
-    accessor: "exerciseplanID",
+    accessor: "Plan_ID",
     Filter: ColumnFilter,
     disableFilters: true,
   },
   {
     Header: "Plan Name",
-    accessor: "planName",
+    accessor: "Plan_Name",
     Filter: ColumnFilter,
   },
   {
     Header: "Description",
-    accessor: "description",
-    Filter: ColumnFilter,
-  },
-  {
-    Header: "Reps (Repetitions)",
-    accessor: "reps",
-    Filter: ColumnFilter,
-  },
-
-  {
-    Header: "Assigned Video ID",
-    accessor: "assignedVideoID",
+    accessor: "Description",
     Filter: ColumnFilter,
   },
   {
     Header: "Date Created",
-    accessor: "datecreated",
+    accessor: "date_created",
     Filter: ColumnFilter,
   },
+
   {
-    Header: "Patient",
-    accessor: "patient",
-    Filter: ColumnFilter,
-  },
-  {
-    Header: "Physical Therapist ID",
-    accessor: "ptID",
+    Header: "Reps (Repetitions)",
+    accessor: "reps",
     Filter: ColumnFilter,
   },
 ];
 
 export const progressCOLUMNS = [
   {
-    Header: "Progress Report ID",
-    accessor: "progressreportID",
+    Header: "Report ID",
+    accessor: "Report_ID",
     Filter: ColumnFilter,
     disableFilters: true,
   },
   {
-    Header: "Progress Text",
-    accessor: "progressText",
+    Header: "Start Time Date",
+    accessor: "Start_Time_Date",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "End Time Date",
+    accessor: "End_Time_Date",
     Filter: ColumnFilter,
   },
   {
     Header: "Patient ID",
-    accessor: "patientID",
+    accessor: "Patient_ID",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Tag",
+    accessor: "Tag",
     Filter: ColumnFilter,
   },
   {
     Header: "Exercise Plan ID",
-    accessor: "exercisePlanID",
+    accessor: "Plan_ID",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Frequency",
+    accessor: "Frequency",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Activities",
+    accessor: "Activities",
+    Filter: ColumnFilter,
+  },
+
+  {
+    Header: "Total Time",
+    accessor: "total_time",
     Filter: ColumnFilter,
   },
 ];
-
+export const ptActivityCOLUMNS = [
+  {
+    Header: "Activity ID",
+    accessor: "at_ID",
+    Filter: ColumnFilter,
+    disableFilters: true,
+  },
+  {
+    Header: "Start Questions",
+    accessor: "start_questions",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "End Questions",
+    accessor: "end_questions",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Start View Video",
+    accessor: "start_view_video",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "End View Video",
+    accessor: "end_view_video",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Start Reading Profile",
+    accessor: "start_reading_profile",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "End Reading Profile",
+    accessor: "end_reading_profile",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Physical Therapist ID",
+    accessor: "pt_ID",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Patient ID",
+    accessor: "patient_ID",
+    Filter: ColumnFilter,
+  },
+];
 /*
 export const GROUPED_COLUMNS = [
   {
