@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './PageStyle.css';
+import { Row, Col } from 'react-bootstrap';
 
 class Login extends Component {
 	constructor(props) {
@@ -36,35 +37,39 @@ class Login extends Component {
 
 	render() {
 		return (
-			<div className="login">
-				<form onSubmit={this.displayLogin}>
-				<h2>REMEDIUM</h2>
-					<h2>Login</h2>
-					<div className="username">
-						<input
-							type="text"
-							placeholder="Username..."
-							value={this.state.email}
-							onChange={this.update}
-							name="email"
-						/>
+				<center>
+					<br></br>
+					<br></br>
+					<div className="login">
+						<form onSubmit={this.displayLogin}>
+						<h2>REMEDIUM</h2>
+							<h2>Login</h2>
+							<div className="username">
+								<input
+									type="text"
+									placeholder="Username..."
+									value={this.state.email}
+									onChange={this.update}
+									name="email"
+								/>
+							</div>
+
+							<div className="password">
+								<input
+									type="password"
+									placeholder="Password..."
+									value={this.state.password}
+									onChange={this.update}
+									name="password"
+								/>
+							</div>
+
+							<input type="submit" value="Login" />
+						</form>
+
+						<Link to="/register">Create an account</Link>
 					</div>
-
-					<div className="password">
-						<input
-							type="password"
-							placeholder="Password..."
-							value={this.state.password}
-							onChange={this.update}
-							name="password"
-						/>
-					</div>
-
-					<input type="submit" value="Login" />
-				</form>
-
-				<Link to="/register">Create an account</Link>
-			</div>
+				</center>
 		);
 	}
 }

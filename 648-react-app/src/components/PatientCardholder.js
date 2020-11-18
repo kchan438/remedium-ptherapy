@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from './PatientCard';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import { Container, Row, Col, Button} from 'react-bootstrap';
 
 
 //image imports, probably won't be done like this in the live version

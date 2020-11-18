@@ -39,59 +39,63 @@ class Register extends Component {
 
 	render() {
 		return (
-			<div className="register">
-				<form onSubmit={this.displayLogin}>
-				<h2>REMEDIUM</h2>
-					<h2>Register</h2>
+			<center>
+				<br></br>
+				<br></br>
+				<div className="register">
+					<form onSubmit={this.displayLogin}>
+					<h2>REMEDIUM</h2>
+						<h2>Register</h2>
 
-					<div className="name">
-						<input
-							type="text"
-							placeholder="First Name"
-							name="fisrtname"
-							value={this.state.firstname}
-							onChange={this.update}
-						/>
-					</div>
-					<div className="name">
-						<input
-							type="text"
-							placeholder="Last Name"
-							name="lastname"
-							value={this.state.lastname}
-							onChange={this.update}
-						/>
-					</div>
+						<div className="name">
+							<input
+								type="text"
+								placeholder="First Name"
+								name="fisrtname"
+								value={this.state.firstname}
+								onChange={this.update}
+							/>
+						</div>
+						<div className="name">
+							<input
+								type="text"
+								placeholder="Last Name"
+								name="lastname"
+								value={this.state.lastname}
+								onChange={this.update}
+							/>
+						</div>
 
-					<div className="email">
-						<input
-							type="text"
-							placeholder="Enter your email"
-							name="email"
-							value={this.state.email}
-							onChange={this.update}
-						/>
-					</div>
+						<div className="email">
+							<input
+								type="text"
+								placeholder="Enter your email"
+								name="email"
+								value={this.state.email}
+								onChange={this.update}
+							/>
+						</div>
 
-					<div className="pasword">
-						<input
-							type="password"
-							placeholder="Password"
-							name="password"
-							value={this.state.password}
-							onChange={this.update}
-						/>
-					</div>
+						<div className="pasword">
+							<input
+								type="password"
+								placeholder="Password"
+								name="password"
+								value={this.state.password}
+								onChange={this.update}
+							/>
+						</div>
 
-					<div className="password">
-						<input type="password" placeholder="Confirm Password" name="password1" />
-					</div>
+						<div className="password">
+							<input type="password" placeholder="Confirm Password" name="password1" />
+						</div>
 
-					<input type="submit" value="Login" />
-				</form>
+						<input type="submit" value="Login" />
+					</form>
 
-				<Link to="/">Login Here</Link>
-			</div>
+					<Link to="/">Login Here</Link>
+				</div>
+			</center>
 		);
 	}
 }

@@ -3,7 +3,9 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import style from './App.css';
+// import style from './App.css';
+
+import './App.css';
 
 //Spencer's Pages
 import HomePage from "./pages/HomePage.js";
@@ -16,6 +18,9 @@ import UploadPage from "./pages/UploadPage.js";
 import LoginPage from "./pages/LoginPage.js";
 import RegisterPage from "./pages/RegisterPage.js";
 //Kevin's Pages
+import PatientProfilePage from './pages/PatientProfilePage.js';
+import AssignPage from './pages/AssignPage.js';
+import ReportPage from './pages/ReportPage.js';
 
 
 class App extends React.Component{
@@ -33,6 +38,10 @@ class App extends React.Component{
         {title: 'Profile', path: '/profile'},
         {title: 'login', path: '/login'},
         {title: 'register', path: '/register'},
+        {title: 'patientProfile', path: '/patientProfile'},
+        {title: 'assign', path: '/assign'},
+        {title: 'report', path: '/progressreport'}
+
       ],
       home: {
         title: 'Home Page'
@@ -57,6 +66,15 @@ class App extends React.Component{
       },
       register: {
         title: 'Register Page'
+      },
+      patientProfile: {
+        title: 'Patient Profile Page'
+      },
+      assign: {
+        title: 'Assign Content Page'
+      },
+      report: {
+        title: 'Progress Report Page'
       }
       
     }
@@ -70,7 +88,7 @@ class App extends React.Component{
           <Navbar className="App-header">
             <Navbar.Brand>Remedium</Navbar.Brand>
             <Navbar.Collapse id="navbar-toggle">
-              <Nav classname="center">
+              <Nav className="center">
                 <Link className="nav-link" to="/">Home</Link>
                 <Link className="nav-link" to="/mypatients">Patients</Link>
                 <Link className="nav-link" to="/upload">Upload</Link>
@@ -79,6 +97,8 @@ class App extends React.Component{
                 <Link className="nav-link" to="/profile">Profile</Link>
                 <Link className="nav-link" to="/login">Login</Link>
                 <Link className="nav-link" to="/register">Register</Link>
+                <Link className="nav-link" to="/patientprofile">Patient Profile</Link>
+                {/* <Link className="nav-link" to="/assign">Assign Content</Link> */}
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -91,6 +111,9 @@ class App extends React.Component{
           <Route path="/profile" render={() => <ProfilePage title={this.state.profile.title}/> }/>
           <Route path='/login' render={() => <LoginPage title={this.state.login.title}/> }/>
           <Route path='/register' render={() => <RegisterPage title={this.state.register.title}/> }/>
+          <Route path='/patientprofile' render={() => <PatientProfilePage title={this.state.patientProfile.title}/> }/>
+          <Route path='/assign' render={() => <AssignPage title={this.state.assign.title}/> }/>
+          <Route path='/progressreport' render={() => <ReportPage title={this.state.report.title}/> }/>
         </Container>
       </Router>
     );
