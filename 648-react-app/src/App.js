@@ -5,12 +5,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import style from './App.css';
 
+//Spencer's Pages
 import HomePage from "./pages/HomePage.js";
 import ContentPage from "./pages/ContentPage.js";
 import ProfilePage from "./pages/ProfilePage.js";
 import PingsPage from "./pages/PingsPage.js";
 import PatientsPage from "./pages/PatientsPage.js";
 import UploadPage from "./pages/UploadPage.js";
+//Kolapo's Pages
+import LoginPage from "./pages/LoginPage.js";
+import RegisterPage from "./pages/RegisterPage.js";
+//Kevin's Pages
+
 
 class App extends React.Component{
 
@@ -25,6 +31,8 @@ class App extends React.Component{
         {title: 'Pings', path: '/pings'},
         {title: 'My Content', path: '/content'},
         {title: 'Profile', path: '/profile'},
+        {title: 'login', path: '/login'},
+        {title: 'register', path: '/register'},
       ],
       home: {
         title: 'Home Page'
@@ -42,6 +50,12 @@ class App extends React.Component{
         title: 'Content Repository'
       },
       profile: {
+        title: 'Profile Page'
+      },
+      login: {
+        title: 'Profile Page'
+      },
+      register: {
         title: 'Profile Page'
       }
       
@@ -63,6 +77,8 @@ class App extends React.Component{
                 <Link className="nav-link" to="/pings">Pings</Link>
                 <Link className="nav-link" to="/content">Content</Link>
                 <Link className="nav-link" to="/profile">Profile</Link>
+                <Link className="nav-link" to="/login">Login</Link>
+                <Link className="nav-link" to="/register">Register</Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -73,6 +89,8 @@ class App extends React.Component{
           <Route path="/pings" render={() => <PingsPage title={this.state.pings.title}/> }/>
           <Route path="/content" render={() => <ContentPage title={this.state.content.title}/> }/>
           <Route path="/profile" render={() => <ProfilePage title={this.state.profile.title}/> }/>
+          <Route path='/login' render={() => <LoginPage title={this.state.login.title}/> }/>
+          <Route path='/register' render={() => <RegisterPage title={this.state.register.title}/> }/>
         </Container>
       </Router>
     );
