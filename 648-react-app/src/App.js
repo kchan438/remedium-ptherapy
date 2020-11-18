@@ -53,10 +53,10 @@ class App extends React.Component{
         title: 'Profile Page'
       },
       login: {
-        title: 'Profile Page'
+        title: 'Login Page'
       },
       register: {
-        title: 'Profile Page'
+        title: 'Register Page'
       }
       
     }
