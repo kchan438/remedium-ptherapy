@@ -22,6 +22,8 @@ import PatientProfilePage from './pages/PatientProfilePage.js';
 import AssignPage from './pages/AssignPage.js';
 import ReportPage from './pages/ReportPage.js';
 import SearchPage from './pages/SearchPage.js';
+import ContentItemPage from './pages/ContentItemPage.js';
+import ItemPage2 from './pages/ItemPage2.js';
 
 
 class App extends React.Component{
@@ -41,7 +43,9 @@ class App extends React.Component{
         {title: 'register', path: '/register'},
         {title: 'patientProfile', path: '/patientProfile'},
         {title: 'assign', path: '/assign'},
-        {title: 'report', path: '/progressreport'}
+        {title: 'report', path: '/progressreport'},
+        {title: 'contentitem', path: '/contentitem'},
+        {title: 'itempage2', path: '/itempage2'},
 
       ],
       home: {
@@ -79,8 +83,13 @@ class App extends React.Component{
       },
       search: {
         title: 'Search Page'
+      },
+      contentItem: {
+        title: 'Content Item Page'
+      },
+      item2: {
+        title: 'Content Item Page'
       }
-      
     }
   }
 
@@ -121,6 +130,8 @@ class App extends React.Component{
           <Route path='/assign' render={() => <AssignPage title={this.state.assign.title}/> }/>
           <Route path='/progressreport' render={() => <ReportPage title={this.state.report.title}/> }/>
           <Route path='/search' render={() => <SearchPage title={this.state.search.title}/> }/>
+          <Route path='/contentitem' render={() => <ContentItemPage title={this.state.contentItem.title}/> }/>
+          <Route path='/itempage2' render={() => <ItemPage2 title={this.state.item2.title}/> }/>
         </Container>
       </Router>
     );
