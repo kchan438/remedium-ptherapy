@@ -1,6 +1,7 @@
 .progress-box-1 {
     border: .1em black solid;
     height: 200px;
+    width: 75%;
 }
 
 .card-title {

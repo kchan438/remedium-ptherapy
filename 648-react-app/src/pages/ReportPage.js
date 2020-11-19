@@ -8,23 +8,26 @@ import {ProgressBox1} from '../components/ProgressBox1/ProgressBox1.js';
 const ReportPage = () => {
     return(
         <>
-            <h1>Progress Report Page</h1>
+            <br></br>
+            {/* <h1>Progress Report Page</h1> */}
             <Row>
               <Col>
-                <ProfileCard style={{width: "350px", height: "550px"}} />
+                <ProfileCard style={{ height: "96.43%"}} />
               </Col>
               <Col>
                 <ProgressBox1 
                   cardTitle="Overall Progress"
-                  cardBody="*# of Completed exercises / # of total exercises / Progress Bar on Completion*" 
-                  />
+                  cardBody="*# of Completed exercises / # of total exercises / Progress Bar on Completion*" />
+                <br></br>
                 <ProgressBox1 
                   cardTitle="Completed Exercises" 
                   cardBody="*Exercise result item in this box will be scrollable*"/>
+                <br></br>
                 <ProgressBox1 
                   cardTitle="Excerises In Progress"
                   cardBody="*Various exercise result items this box will be scrollable*"/>
               </Col>
+              <br></br>
             </Row>
         </>
     );
