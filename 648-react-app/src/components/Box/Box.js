@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 // import '../Box/Box.css';
 import '../Box/Box.css';
 
-import { Card, Form } from 'react-bootstrap';
+import { Card, Form, Button } from 'react-bootstrap';
 
 export class Box extends Component {
 

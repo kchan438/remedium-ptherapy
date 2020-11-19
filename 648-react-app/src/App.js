@@ -21,6 +21,7 @@ import RegisterPage from "./pages/RegisterPage.js";
 import PatientProfilePage from './pages/PatientProfilePage.js';
 import AssignPage from './pages/AssignPage.js';
 import ReportPage from './pages/ReportPage.js';
+import SearchPage from './pages/SearchPage.js';
 
 
 class App extends React.Component{
@@ -75,6 +76,9 @@ class App extends React.Component{
       },
       report: {
         title: 'Progress Report Page'
+      },
+      search: {
+        title: 'Search Page'
       }
       
     }
@@ -99,6 +103,8 @@ class App extends React.Component{
                 <Link className="nav-link" to="/register">Register</Link>
                 <Link className="nav-link" to="/patientprofile">Patient Profile</Link>
                 {/* <Link className="nav-link" to="/assign">Assign Content</Link> */}
+                <Link className="nav-link" to="/search">Search</Link>
+
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -114,6 +120,7 @@ class App extends React.Component{
           <Route path='/patientprofile' render={() => <PatientProfilePage title={this.state.patientProfile.title}/> }/>
           <Route path='/assign' render={() => <AssignPage title={this.state.assign.title}/> }/>
           <Route path='/progressreport' render={() => <ReportPage title={this.state.report.title}/> }/>
+          <Route path='/search' render={() => <SearchPage title={this.state.search.title}/> }/>
         </Container>
       </Router>
     );
