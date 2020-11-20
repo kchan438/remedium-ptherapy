@@ -24,6 +24,7 @@ import ReportPage from './pages/ReportPage.js';
 import SearchPage from './pages/SearchPage.js';
 import ContentItemPage from './pages/ContentItemPage.js';
 import ItemPage2 from './pages/ItemPage2.js';
+import ContactPage from './pages/ContactPage.js';
 
 
 class App extends React.Component{
@@ -46,6 +47,7 @@ class App extends React.Component{
         {title: 'report', path: '/progressreport'},
         {title: 'contentitem', path: '/contentitem'},
         {title: 'itempage2', path: '/itempage2'},
+        {title: 'contact', path: '/contact'},
 
       ],
       home: {
@@ -89,6 +91,9 @@ class App extends React.Component{
       },
       item2: {
         title: 'Content Item Page'
+      },
+      contact: {
+        title: 'Contact Page'
       }
     }
   }
@@ -132,6 +137,7 @@ class App extends React.Component{
           <Route path='/search' render={() => <SearchPage title={this.state.search.title}/> }/>
           <Route path='/contentitem' render={() => <ContentItemPage title={this.state.contentItem.title}/> }/>
           <Route path='/itempage2' render={() => <ItemPage2 title={this.state.item2.title}/> }/>
+          <Route path="/contact" render={() => <ContactPage title={this.state.contact.title}/> }/>
         </Container>
       </Router>
     );

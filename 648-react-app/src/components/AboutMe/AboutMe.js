@@ -10,7 +10,7 @@ export class AboutMe extends Component {
           <>
             <Card className="AboutMe">
               <div className="AboutMeDiv">
-                This is the about me section.
+                {this.props.info}
               </div>
             </Card>
           </>

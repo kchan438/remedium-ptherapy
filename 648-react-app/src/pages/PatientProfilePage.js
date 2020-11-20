@@ -17,7 +17,7 @@ const PatientProfilePage = () => {
               </Col><Col>
               <br></br>
                 <ProfileButtons />
-                <AboutMe />
+                <AboutMe info="This is the about me section." />
               </Col>
             </Row>
           </>
