@@ -1,0 +1,27 @@
+[
+  {
+    "ptActivityId": 1,
+    "activityDes": "needs-based",
+    "timeAndDur": "2020-08-17T23:01:05Z"
+  },
+  {
+    "ptActivityId": 2,
+    "activityDes": "capability",
+    "timeAndDur": "2020-09-30T01:30:18Z"
+  },
+  {
+    "ptActivityId": 3,
+    "activityDes": "next generation",
+    "timeAndDur": "2020-04-12T08:57:55Z"
+  },
+  {
+    "ptActivityId": 4,
+    "activityDes": "Synergistic",
+    "timeAndDur": "2019-11-09T14:21:31Z"
+  },
+  {
+    "ptActivityId": 5,
+    "activityDes": "parallelism",
+    "timeAndDur": "2020-08-15T15:09:22Z"
+  }
+]
