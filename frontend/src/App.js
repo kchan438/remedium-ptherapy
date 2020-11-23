@@ -1,147 +1,147 @@
-/*
-import React from "react";
-import styled from "styled-components";
-import { useTable, useExpanded } from "react-table";
-import axios from "axios";
-import { useMemo, useState, useEffect } from "react";
+import React from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+// import style from './App.css';
 
-import makeData from "./components/makeData";
+import './App.css';
 
-import { Styles } from "./TEtable";
-import Table from "./TEtable";
+//Spencer's Pages
+import HomePage from "./pages/HomePage.js";
+import ContentPage from "./pages/ContentPage.js";
+import ProfilePage from "./pages/ProfilePage.js";
+import PingsPage from "./pages/PingsPage.js";
+import PatientsPage from "./pages/PatientsPage.js";
+import UploadPage from "./pages/UploadPage.js";
+//Kolapo's Pages
+import LoginPage from "./pages/LoginPage.js";
+import RegisterPage from "./pages/RegisterPage.js";
+//Kevin's Pages
+import PatientProfilePage from './pages/PatientProfilePage.js';
+import AssignPage from './pages/AssignPage.js';
+import ReportPage from './pages/ReportPage.js';
+import SearchPage from './pages/SearchPage.js';
+import ContentItemPage from './pages/ContentItemPage.js';
+import ItemPage2 from './pages/ItemPage2.js';
+import ContactPage from './pages/ContactPage.js';
 
-function App() {
-  const [data, setData] = useState([]);
-  //const columns = useMemo(() => COLUMNS, []);
 
-  useEffect(() => {
-    axios
-      .get("/getCurrentPatients")
-      .then((res) => {
-        setData(res.data.data.currentPatients);
-        console.log(res.data.data.currentPatients);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+class App extends React.Component{
 
-  //only can used inside a function
-  const COLUMNS = React.useMemo(
-    () => [
-      {
-        // Make an expander cell
-        Header: () => null, // No header
-        id: "expander", // It needs an ID
-        Cell: ({ row }) => (
-          // Use Cell to render an expander for each row.
-          // We can use the getToggleRowExpandedProps prop-getter
-          // to build the expander.
-          <span {...row.getToggleRowExpandedProps()}>
-            {row.isExpanded ? "[Close]" : "-View-"}
-          </span>
-        ),
+  constructor(props){
+    super(props);
+    this.state = {
+      title: 'Remedium',
+      headerLinks: [
+        {title: 'Home', path: '/'},
+        {title: 'My Patients', path: '/mypatients'},
+        {title: 'Upload', path: '/upload'},
+        {title: 'Pings', path: '/pings'},
+        {title: 'My Content', path: '/content'},
+        {title: 'Profile', path: '/profile'},
+        {title: 'login', path: '/login'},
+        {title: 'register', path: '/register'},
+        {title: 'patientProfile', path: '/patientProfile'},
+        {title: 'assign', path: '/assign'},
+        {title: 'report', path: '/progressreport'},
+        {title: 'contentitem', path: '/contentitem'},
+        {title: 'itempage2', path: '/itempage2'},
+        {title: 'contact', path: '/contact'},
+
+      ],
+      home: {
+        title: 'Home Page'
       },
-      {
-        Header: "ID",
-        accessor: "id",
+      patients: {
+        title: 'Patients Page'
       },
-      {
-        Header: "Name",
-        columns: [
-          {
-            Header: "First Name",
-            accessor: "firstName",
-          },
-          {
-            Header: "Last Name",
-            accessor: "lastName",
-          },
-        ],
+      upload: {
+        title: 'Uploads Page'
       },
-      {
-        Header: "Info",
-        columns: [
-          {
-            Header: "Age",
-            accessor: "age",
-          },
-          {
-            Header: "Bio",
-            accessor: "bio",
-          },
-          {
-            Header: "Email",
-            accessor: "email",
-          },
-          {
-            Header: "ptID",
-            accessor: "ptID",
-          },
-        ],
+      pings: {
+        title: 'Notification (Ping) Page'
       },
-    ],
-    []
-  );
+      content: {
+        title: 'Content Repository'
+      },
+      profile: {
+        title: 'Profile Page'
+      },
+      login: {
+        title: 'Login Page'
+      },
+      register: {
+        title: 'Register Page'
+      },
+      patientProfile: {
+        title: 'Patient Profile Page'
+      },
+      assign: {
+        title: 'Assign Content Page'
+      },
+      report: {
+        title: 'Progress Report Page'
+      },
+      search: {
+        title: 'Search Page'
+      },
+      contentItem: {
+        title: 'Content Item Page'
+      },
+      item2: {
+        title: 'Content Item Page'
+      },
+      contact: {
+        title: 'Contact Page'
+      }
+    }
+  }
 
-  // Create a function that will render our row sub components
-  const renderRowSubComponent = React.useCallback(
-    ({ row }) => (
-      <pre
-        style={{
-          fontSize: "20px",
-        }}
-      >
-        <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
-      </pre>
-    ),
-    []
-  );
+  render(){
 
-  return (
-    <Styles>
-      <Table
-        columns={COLUMNS}
-        data={data}
-        // We added this as a prop for our table component
-        // Remember, this is not part of the React Table API,
-        // it's merely a rendering option we created for
-        // ourselves
-        renderRowSubComponent={renderRowSubComponent}
-      />
-    </Styles>
-  );
-}
+    return(
+      <Router>
+        <Container className="p-0" fluid={true}>
+          <Navbar className="App-header">
+            <Navbar.Brand>Remedium</Navbar.Brand>
+            <Navbar.Collapse id="navbar-toggle">
+              <Nav className="center">
+                <Link className="nav-link" to="/">Home</Link>
+                <Link className="nav-link" to="/mypatients">Patients</Link>
+                <Link className="nav-link" to="/upload">Upload</Link>
+                <Link className="nav-link" to="/pings">Pings</Link>
+                <Link className="nav-link" to="/content">Content</Link>
+                <Link className="nav-link" to="/profile">Profile</Link>
+                <Link className="nav-link" to="/login">Login</Link>
+                <Link className="nav-link" to="/register">Register</Link>
+                <Link className="nav-link" to="/patientprofile">Patient Profile</Link>
+                {/* <Link className="nav-link" to="/assign">Assign Content</Link> */}
+                <Link className="nav-link" to="/search">Search</Link>
 
-export default App;
-*/
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
 
-import React from "react";
-import "./App.css";
-import Header from "./Header";
-import Home from "./HeaderPages/Home";
-import MyPatients from "./HeaderPages/MyPatients";
-import UploadContent from "./HeaderPages/UploadContent";
-import Notifications from "./HeaderPages/Notifications";
-import LoginRegister from "./HeaderPages/LoginRegister";
-import Profile from "./HeaderPages/Profile";
-import { Switch, Route } from "react-router-dom";
-
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/mypatients" component={MyPatients} />
-        <Route exact path="/uploadcontent" component={UploadContent} />
-        <Route exact path="/notifications" component={Notifications} />
-        <Route exact path="/loginregister" component={LoginRegister} />
-        <Route exact path="/profile" component={Profile} />
-        <Route path="/profile/:id" component={Profile} />
-      </Switch>
-    </div>
-  );
+          <Route path="/" exact render={() => <HomePage title={this.state.home.title} subTitle={this.state.home.subTitle} text={this.state.home.text}/>} />
+          <Route path="/mypatients" render={() => <PatientsPage title={this.state.patients.title}/> }/>
+          <Route path="/upload" render={() => <UploadPage title={this.state.upload.title}/> }/>
+          <Route path="/pings" render={() => <PingsPage title={this.state.pings.title}/> }/>
+          <Route path="/content" render={() => <ContentPage title={this.state.content.title}/> }/>
+          <Route path="/profile" render={() => <ProfilePage title={this.state.profile.title}/> }/>
+          <Route path='/login' render={() => <LoginPage title={this.state.login.title}/> }/>
+          <Route path='/register' render={() => <RegisterPage title={this.state.register.title}/> }/>
+          <Route path='/patientprofile' render={() => <PatientProfilePage title={this.state.patientProfile.title}/> }/>
+          <Route path='/assign' render={() => <AssignPage title={this.state.assign.title}/> }/>
+          <Route path='/progressreport' render={() => <ReportPage title={this.state.report.title}/> }/>
+          <Route path='/search' render={() => <SearchPage title={this.state.search.title}/> }/>
+          <Route path='/contentitem' render={() => <ContentItemPage title={this.state.contentItem.title}/> }/>
+          <Route path='/itempage2' render={() => <ItemPage2 title={this.state.item2.title}/> }/>
+          <Route path="/contact" render={() => <ContactPage title={this.state.contact.title}/> }/>
+        </Container>
+      </Router>
+    );
+  }
 }
 
 export default App;
