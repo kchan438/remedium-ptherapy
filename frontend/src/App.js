@@ -23,6 +23,7 @@ import SearchPage from './pages/SearchPage.js';
 import ContentItemPage from './pages/ContentItemPage.js';
 import ItemPage2 from './pages/ItemPage2.js';
 import ContactPage from './pages/ContactPage.js';
+import PoseTrackingPage from './pages/PoseTrackingPage.js';
 
 
 
@@ -46,7 +47,8 @@ class App extends React.Component{
         {title: 'report', path: '/progressreport'},
         {title: 'contentitem', path: '/contentitem'},
         {title: 'itempage2', path: '/itempage2'},
-        {title: 'contact', path: '/contact'}
+        {title: 'contact', path: '/contact'},
+        {title: 'posetracking', path: '/posetracking'}
       ],
       home: {
         title: 'Home Page'
@@ -92,6 +94,9 @@ class App extends React.Component{
       },
       contact: {
         title: 'Contact Page'
+      },
+      posetracking: {
+        title: 'Pose Tracking Page'
       }
       
     }
@@ -117,6 +122,7 @@ class App extends React.Component{
                 <Link className="nav-link" to="/patientprofile">Patient Profile</Link>
                 {/* <Link className="nav-link" to="/assign">Assign Content</Link> */}
                 <Link className="nav-link" to="/search">Search</Link>
+                <Link className="nav-link" to="/posetracking">Pose Tracking</Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -138,6 +144,7 @@ class App extends React.Component{
           <Route path='/contentitem' render={() => <ContentItemPage title={this.state.contentItem.title}/> }/>
           <Route path='/itempage2' render={() => <ItemPage2 title={this.state.item2.title}/> }/>
           <Route path="/contact" render={() => <ContactPage title={this.state.contact.title}/> }/>
+          <Route path="/posetracking" render={() => <PoseTrackingPage title={this.state.posetracking.title}/> }/>
         </Container>
       </Router>
     );
