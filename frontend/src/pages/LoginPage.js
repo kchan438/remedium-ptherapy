@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './PageStyle.css';
+import '../App.css';
 import { Row, Col } from 'react-bootstrap';
 
 class Login extends Component {
