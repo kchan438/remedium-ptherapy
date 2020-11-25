@@ -11,7 +11,7 @@ const tracking = () => {
     return(
         <>
         <div>
-            <h1>Pose Tracking</h1>
+            {/* <h1>Pose Tracking</h1> */}
             <br></br>
             {/* <img src={todd} id="video" alt="no image" id="image1" width="400px" height="500px" /> */}
             <PoseNet />

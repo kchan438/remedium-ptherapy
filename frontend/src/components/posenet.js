@@ -1,77 +1,66 @@
+import React, {Component, useRef} from 'react';
+
 import * as posenet from '@tensorflow-models/posenet';
-// import * as tf from '@tensorflow/tfjs';
-const videoWidth = 900;
-const videoHeight = 700;
+import * as tf from '@tensorflow/tfjs';
+import Webcam from 'react-webcam';
+import { drawKeypoints, drawSkeleton } from './utilities.js';
 
-async function cameraSetup() {
-    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        throw new Error(
-            'Browser API navigator.mediaDevices.getUserMedia not available');
+function PoseNet() {
 
-        const video = document.getElementById('video');
-        video.width = videoWidth;
-        video.height = videoHeight;
+    const webcamRef = useRef(null);
+    const canvasRef = useRef(null);
 
-        const stream = await navigator.mediaDevices.getUserMedia({
-            'audio': false,
-            'video': {
-                facingMode: 'user',
-                width: videoWidth,
-                height: videoHeight,
-            },
-        });
-        video.srcObject = stream;
-    }
+    //load posenet
+    const runPoseNet = async () => {
+        const net = await posenet.load({
+            inputResolution:{width:640, height: 480},
+            scale: 0.5
+        })
+        //
+        setInterval( () => {
+            detect(net)
+        }, 100)
+    };
 
-    return new Promise((resolve) => {
-        video.onloadedmetadata = () => {
-            resolve(video);
+    const detect = async (net) => {
+        if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState===4 ){
+            //Get video properties
+            const video = webcamRef.current.video;
+            const videoWidth = webcamRef.current.video.videoWidth;
+            const videoHeight = webcamRef.current.video.videoHeight;
+
+            //Set video width
+            webcamRef.current.video.width = videoWidth;
+            webcamRef.current.video.height = videoHeight;
+
+
+            //make detections
+            const pose = await net.estimateSinglePose(video);
+            console.log(pose);
+
+            drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
         }
-    })
-}
+    };
 
-class PoseNet extends Component {
-    static defaultProps = {
-        videoWidth: 900,
-        videoHeight: 700,
-        flipHorizontal: true,
-        algorithm: 'single-pose',
-        showVideo: true,
-        showSkeleton: true,
-        showPoints: true,
-        minPoseConfidence: 0.1,
-        minPartConfidence: 0.5,
-        maxPoseDetections: 2,
-        nmsRadius: 20,
-        outputStride: 16,
-        imageScaleFactor: 0.5,
-        skeletonColor: '#ffadea',
-        skeletonLineWidth: 6,
-        loadingText: 'Loading.. please be patient...'
+    const drawCanvas = (pose, video, videoWidth, videoHeight, canvas) => {
+        const ctx = canvas.current.getContext("2d");
+        canvas.current.width = videoWidth;
+        canvas.current.height = videoHeight;
+
+        drawKeypoints(pose["keypoints"], 0.5, ctx);
+        drawSkeleton(pose["keypoints"], 0.5, ctx);
     }
+        runPoseNet();
 
-    constructor(props) {
-        super(props, PoseNet.defaultProps)
-    }
-
-    getCanvas = elem => {
-        this.canvas = elem
-    }
-
-    getVideo = elem => {
-        this.video = elem
-    }
-
-    render() {
         return (
             <div>
                 <div>
-                    <video id="videoNoShow" playsInline ref={this.getVideo} />
-                    <canvas className="webcam" ref={this.getCanvas} />
+                    <h1>Pose</h1>
+                    <Webcam ref={webcamRef} style={{position:"absolute", marginLeft: "auto", marginRight: "auto", left: 0, right: 0, textAlign: "center", zIndex: 9, width: 640, height: 480}} />
+                    <canvas ref={canvasRef} style={{position:"absolute", marginLeft: "auto", marginRight: "auto", left: 0, right: 0, textAlign: "center", zIndex: 9, width: 640, height: 480}} />
                 </div>
             </div>
         )
-    }
 }
 
 export default PoseNet;
