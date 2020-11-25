@@ -1,31 +1,20 @@
 import React from 'react';
-
+import todd from '../images(test)/todd.jpg';
 import { Col, Row } from 'react-bootstrap';
 
-import * as posenet from '@tensorflow-models/posenet';
-const net = await posenet.load();
+// import posenetjs from '../components/posenet.js';
+// import { PoseNet } from '@tensorflow-models/posenet';
+import PoseNet from '../components/posenet.js';
 
-async function estimatePoseOnImage(imageElement) {
-    const net = await posenet.load();
-
-    const pose = await net.estimateSinglePose(imageElement, {
-        flipHorizontal: false
-    });
-    return pose;
-}
-
-const imageElement = document.getElementById(image1);
-
-const pose = estimagePoseOnImage(imageElement);
-
-console.log(pose);
 
 const tracking = () => {
     return(
         <>
         <div>
             <h1>Pose Tracking</h1>
-            <img src="./images(test)/todd.jpg" id="image1" />
+            <br></br>
+            {/* <img src={todd} id="video" alt="no image" id="image1" width="400px" height="500px" /> */}
+            <PoseNet />
         </div>
         </>
     );
