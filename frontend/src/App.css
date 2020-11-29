@@ -7,7 +7,6 @@
   pointer-events: none;
 }
 
-
 .App-header {
   background-color: #999ba1;
   min-height: 8vh;
@@ -17,8 +16,6 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-
 
 .App-link {
   color: #61dafb;
@@ -33,13 +30,46 @@
   }
 }
 
+/* Collin */
+label {
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: center;
+}
 
+input[type="title"],
+input[type="text"],
+input[type="email"],
+textarea {
+  display: center;
+  width: 450px;
+  height: 100px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: red;
+}
 /* //Kolapo */
 
 body {
   padding: 0px;
   margin: 0px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .container {
@@ -66,7 +96,7 @@ body {
   text-align: center;
 }
 
-input[type='text'] {
+input[type="text"] {
   background-color: #e6e6e6;
   color: #827ffe;
   font-size: 16px;
@@ -76,7 +106,7 @@ input[type='text'] {
   padding: 20px 30px;
 }
 
-input[type='password'] {
+input[type="password"] {
   background-color: #e6e6e6;
   padding: 20px 30px;
   color: #827ffe;
@@ -86,7 +116,7 @@ input[type='password'] {
   width: 85%;
 }
 
-input[type='submit'] {
+input[type="submit"] {
   padding: 15px 0px;
   background-color: #827ffe;
   color: #fff;
