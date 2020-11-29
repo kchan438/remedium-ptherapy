@@ -133,10 +133,10 @@ function AssignPage(props) {
 
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>
+      {/* <h1 style={{ textAlign: "center" }}>
         Video Assignment Page for{" "}
         {patient[0].first_name + " " + patient[0].last_name}
-      </h1>
+      </h1> */}
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
