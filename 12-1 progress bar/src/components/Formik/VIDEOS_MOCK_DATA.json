@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "exercise": "Crunches",
+    "video": "https://www.youtube.com/watch?v=HiRsmHH7psA"
+  },
+  {
+    "id": 2,
+    "exercise": "Hop Heel Clicks",
+    "video": "https://www.youtube.com/watch?v=4XcGTvcSRxY"
+  },
+  {
+    "id": 3,
+    "exercise": "Half Squat Walk",
+    "video": "https://www.youtube.com/watch?v=wqfRvXc7BHY"
+  },
+  {
+    "id": 4,
+    "exercise": "Bear Crawl",
+    "video": "https://www.youtube.com/watch?v=bfT5TaRFKQw"
+  },
+  {
+    "id": 5,
+    "exercise": "Army Crawl",
+    "video": "https://www.youtube.com/watch?v=bR-XzXen9xU"
+  },
+  {
+    "id": 6,
+    "exercise": "Alternative Arm / Leg Raises",
+    "video": "https://www.youtube.com/watch?v=DFk3yGZv62U"
+  },
+  {
+    "id": 7,
+    "exercise": "Body Saw",
+    "video": "https://www.youtube.com/watch?v=ZTN2mCuYi2Y"
+  },
+  {
+    "id": 8,
+    "exercise": "Bridges",
+    "video": "https://www.youtube.com/watch?v=N48d7sm8dbU"
+  },
+  {
+    "id": 9,
+    "exercise": "Flutter Kicks",
+    "video": "https://www.youtube.com/watch?v=WRnq49TAv-w"
+  },
+  {
+    "id": 10,
+    "exercise": "Jumping Jacks",
+    "video": "https://www.youtube.com/watch?v=gG2Z1siSvkk"
+  }
+]
