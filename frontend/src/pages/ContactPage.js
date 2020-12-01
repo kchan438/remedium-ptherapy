@@ -8,6 +8,8 @@ import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
 import { AboutMe } from "../components/AboutMe/AboutMe.js";
 import { ProfileButtons } from "../components/ProfileButtons/ProfileButtons.js";
 
+import "../pages/PageStyle.css";
+
 var data = PEOPLE_MOCK_DATA;
 
 const getPatientById = (id) => {
@@ -65,7 +67,7 @@ class ContactPage extends Component {
   }
   render() {
     return (
-      <>
+      <div className="page-background">
         <Row>
           <Col>
             <br></br>
@@ -95,7 +97,7 @@ class ContactPage extends Component {
             <AboutMe info={this.state.bio} />
           </Col>
         </Row>
-      </>
+      </div>
     );
     /*
   render() {

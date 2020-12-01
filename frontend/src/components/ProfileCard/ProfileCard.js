@@ -13,7 +13,8 @@ export class ProfileCard extends Component {
       <>
         <Card
           className="ProfileCard"
-          style={{ width: "65%", marginLeft: "15%", height: "150%" }}
+          //MODIFY HERE FOR THIS PAGE'S PROFILECARD SIZING/BORDERS/MARGINS
+          style={{ width: "65%", marginLeft: "15%", height: "80vh", marginBottom: "5%"}}
         >
           <h3 style={{ textAlign: "center" }}>
             {this.props.first_name} {this.props.last_name}
@@ -23,11 +24,13 @@ export class ProfileCard extends Component {
             src={this.props.avatar}
             alt="No display"
             style={{
-              width: "250px",
-              height: "180px",
+              maxWidth: "250px",
+              maxHeight: "180px",
               borderRadius: "0%",
               marginTop: "20px",
               marginLeft: "25%",
+              objectFit: "cover",
+              display: "flex"
             }}
           />
           <br></br>
@@ -35,6 +38,7 @@ export class ProfileCard extends Component {
           <p>Location: {this.props.location}</p>
           <p>Age: {this.props.age}</p>
           <p>Current Injury Type: {this.props.current_injury_type}</p>
+          <div className="align-to-bottom">
           <p>
             Progress:{" "}
             <CircularProgressWithLabel
@@ -58,6 +62,7 @@ export class ProfileCard extends Component {
               Profile
             </Button>
           </Link>
+          </div>
         </Card>
       </>
     );

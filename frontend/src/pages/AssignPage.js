@@ -18,6 +18,7 @@ import * as Yup from "yup";
 import FormikControl from "../components/Formik/FormikControl";
 
 import { DateRange, DateRangePicker } from "react-date-range";
+import "../pages/PageStyle.css"; //for background and some text
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
@@ -132,7 +133,7 @@ function AssignPage(props) {
   };
 
   return (
-    <>
+    <div className="page-background">
       {/* <h1 style={{ textAlign: "center" }}>
         Video Assignment Page for{" "}
         {patient[0].first_name + " " + patient[0].last_name}
@@ -155,10 +156,10 @@ function AssignPage(props) {
               style={{
                 width: "400px",
                 paddingTop: "5px",
-                //backgroundColor: "#cfe8fc",
                 height: "50vh",
                 border: "2px solid grey",
                 borderRadius: "5px",
+                backgroundColor: "white",
               }}
             >
               <h2>Choose Date</h2>
@@ -179,10 +180,10 @@ function AssignPage(props) {
               style={{
                 width: "500px",
                 paddingTop: "5px",
-                //backgroundColor: "#cfe8fc",
                 height: "50vh",
                 border: "2px solid grey",
                 borderRadius: "5px",
+                backgroundColor: "white",
               }}
             >
               <FormikControl control="input" label="Title" name="title" />
@@ -219,12 +220,13 @@ function AssignPage(props) {
               alignItems="center"
               style={{
                 width: "600px",
+                minWidth: "500px",
                 paddingTop: "5px",
-                //backgroundColor: "#cfe8fc",
                 height: "800px",
                 border: "2px solid grey",
                 borderRadius: "5px",
                 overflow: "auto",
+                backgroundColor: "white",
               }}
             >
               <h1>Videos</h1>
@@ -275,7 +277,7 @@ function AssignPage(props) {
           </Form>
         )}
       </Formik>
-    </>
+    </div>
   );
 }
 /*

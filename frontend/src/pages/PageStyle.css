@@ -1,3 +1,15 @@
+.page-background{
+    background-color: rgb(36, 34, 34) ;
+    height: 100%;
+    min-height: 92vh;
+}
+
+.title-text{
+    color: white;
+    text-align: center;
+    font-size: calc(8px + 4vmin);
+}
+
 .searchbar {
     position: absolute;
     top: 10%;

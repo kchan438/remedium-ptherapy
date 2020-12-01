@@ -6,11 +6,11 @@ import SearchBar from "../components/PatientSearchBar";
 
 function PatientsPage(props) {
   return (
-    <div>
+    <div className="page-background">
       <div>
         <center>
           <SearchBar />
-          <p className="header-text">My Patients</p>
+          <p className="title-text">My Patients</p>
         </center>
       </div>
       <div>

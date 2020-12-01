@@ -9,6 +9,8 @@ import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
 import { ProfileButtons } from "../components/ProfileButtons/ProfileButtons.js";
 import { AboutMe } from "../components/AboutMe/AboutMe.js";
 
+import "../pages/PageStyle.css";
+
 var data = PEOPLE_MOCK_DATA;
 console.log("Checking data: ", data);
 
@@ -66,7 +68,7 @@ class PatientProfilePage extends Component {
 
   render() {
     return (
-      <>
+      <div className="page-background">
         <Row>
           <Col>
             <br></br>
@@ -96,7 +98,7 @@ class PatientProfilePage extends Component {
             <AboutMe info={this.state.bio} />
           </Col>
         </Row>
-      </>
+      </div>
       /*
       <div>
         <h4>This is our profile Page!</h4>

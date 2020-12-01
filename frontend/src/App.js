@@ -98,38 +98,38 @@ class App extends React.Component {
       <Router>
         <Container className="p-0" fluid={true}>
           <Navbar className="App-header">
-            <Navbar.Brand>Remedium</Navbar.Brand>
+            <div className="logo">Remedium</div>
             <Navbar.Collapse id="navbar-toggle">
               <Nav className="center">
-                <Link className="nav-link" to="/home">
+                <Link className="navbar-button" to="/home">
                   Home
                 </Link>
-                <Link className="nav-link" to="/mypatients">
+                <Link className="navbar-button" to="/mypatients">
                   Patients
                 </Link>
-                <Link className="nav-link" to="/upload">
+                <Link className="navbar-button" to="/upload">
                   Upload
                 </Link>
-                <Link className="nav-link" to="/pings">
+                <Link className="navbar-button" to="/pings">
                   Pings
                 </Link>
-                <Link className="nav-link" to="/content">
+                <Link className="navbar-button" to="/content">
                   Content
                 </Link>
-                <Link className="nav-link" to="/profile">
+                <Link className="navbar-button" to="/profile">
                   Profile
                 </Link>
-                <Link className="nav-link" to="/login">
+                <Link className="navbar-button" to="/login">
                   Login
                 </Link>
-                <Link className="nav-link" to="/register">
+                <Link className="navbar-button" to="/register">
                   Register
                 </Link>
-                <Link className="nav-link" to="/patientprofile">
+                <Link className="navbar-button" to="/patientprofile">
                   Patient Profile
                 </Link>
                 {/* <Link className="nav-link" to="/assign">Assign Content</Link> */}
-                <Link className="nav-link" to="/search">
+                <Link className="navbar-button" to="/search">
                   Search
                 </Link>
               </Nav>

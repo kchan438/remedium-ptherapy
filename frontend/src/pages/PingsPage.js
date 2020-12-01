@@ -4,14 +4,14 @@ import Card from '../components/PatientCard';
 import Carousel from '../components/PingsCardHolder';
 import SearchBar from '../components/PingsSearchBar';
 
-function ContentPage(props){
+function PingsPage(props){
 
     return(
-        <div>
+        <div className="page-background">
             <div>
                 <center>
                 <SearchBar />
-                <p className="header-text">My Pings</p>
+                <p className="title-text">My Pings</p>
                 </center>
             </div>
             <div>
@@ -21,4 +21,4 @@ function ContentPage(props){
     );
 }
 
-export default ContentPage;
+export default PingsPage;

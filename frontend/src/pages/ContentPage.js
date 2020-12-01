@@ -21,8 +21,8 @@ function ContentPage(props) {
     );
   }, [search, videos]);
   return (
-    <>
-      <h1 style={{ textAlign: "center" }}>My Content</h1>
+    <div className="page-background">
+      <h1 className="title-text">My Content</h1>
       <Grid container spacing={0} justify="center" alignItems="center">
         <input
           type="text"
@@ -37,7 +37,7 @@ function ContentPage(props) {
           </Grid>
         ))}
       </Grid>
-    </>
+    </div>
   );
 }
 /*

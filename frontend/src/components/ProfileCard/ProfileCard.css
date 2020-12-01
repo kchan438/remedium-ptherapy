@@ -6,17 +6,26 @@
   /* margin-bottom: 50px; */
   margin-left: 15%;
   /* margin-top: 50px; */
-  height: 150%;
+  height: 80%;
 }
 
 #profilepic {
-  width: 280px;
+  max-width: 280px;
   /* max-width: 100%; */
   height: 180px;
   border-radius: 0%;
   /* padding-left: 50px; */
-  margin-top: 20px;
-  margin-left: 25%;
+  /*margin-top: 20px;*/
+  margin-right: 25%;
+  object-fit: cover;
+  display: flex;
+}
+
+.align-to-bottom{
+  position: absolute;
+  bottom: 3%;
+  left: 20%;
+  right: 20%;
 }
 
 h2 {

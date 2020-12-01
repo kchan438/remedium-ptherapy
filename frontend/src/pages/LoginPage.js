@@ -38,12 +38,10 @@ class Login extends Component {
 	render() {
 		return (
 				<center>
-					<br></br>
-					<br></br>
-					<div className="login">
+					<div className="page-background">
 						<form onSubmit={this.displayLogin}>
-						<h2>REMEDIUM</h2>
-							<h2>Login</h2>
+						<h2 className="title-text">REMEDIUM</h2>
+							<h2 className="title-text">Login</h2>
 							<div className="username">
 								<input
 									type="text"

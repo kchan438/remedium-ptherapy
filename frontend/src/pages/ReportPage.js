@@ -7,6 +7,8 @@ import { Row, Col, Button } from "react-bootstrap";
 import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
 import { ProgressBox1 } from "../components/ProgressBox1/ProgressBox1.js";
 
+import "../pages/PageStyle.css";
+
 var data = PEOPLE_MOCK_DATA;
 
 const getPatientById = (id) => {
@@ -64,7 +66,7 @@ class ReportPage extends Component {
   }
   render() {
     return (
-      <>
+      <div className="page-background">
         <br></br>
         {/* <h1>Progress Report Page</h1> */}
         <Row>
@@ -98,7 +100,7 @@ class ReportPage extends Component {
           </Col>
           <br></br>
         </Row>
-      </>
+      </div>
     );
   }
 }

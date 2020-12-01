@@ -5,6 +5,8 @@ import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
 import PEOPLE_MOCK_DATA from "../components/PEOPLE_MOCK_DATA";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
+import "../pages/PageStyle.css";
+
 function SearchPage() {
   const patients = PEOPLE_MOCK_DATA;
   const [search, setSearch] = useState("");
@@ -41,7 +43,7 @@ function SearchPage() {
   };
 
   return (
-    <div>
+    <div className="page-background">
       <div className="App">
         <h1>My Patients</h1>
         <p></p>
@@ -63,7 +65,7 @@ function SearchPage() {
                 progress={patient.progress}
                 avatar={patient.avatar}
                 bio={patient.bio}
-                style={{ width: "250px", height: "400px" }}
+                //style={{ width: "250px", height: "400px" }}
               />
             </div>
           ))}
