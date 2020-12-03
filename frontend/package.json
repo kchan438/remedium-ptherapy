@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.1",
+    "@tensorflow-models/posenet": "^2.2.1",
+    "@tensorflow/tfjs": "^2.7.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -21,6 +23,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
     "react-table": "^7.6.2",
+    "react-webcam": "^5.2.2",
     "socket.io-client": "^3.0.3",
     "web-vitals": "^0.2.4",
     "yup": "^0.31.0"
