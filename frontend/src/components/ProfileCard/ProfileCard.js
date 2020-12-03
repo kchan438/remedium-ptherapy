@@ -6,6 +6,7 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import "../ProfileCard/ProfileCard.css";
 
 import { Card } from "react-bootstrap";
+import ReportPageHelper from "../../pages/ReportPageHelper";
 
 export class ProfileCard extends Component {
   render() {
@@ -14,7 +15,12 @@ export class ProfileCard extends Component {
         <Card
           className="ProfileCard"
           //MODIFY HERE FOR THIS PAGE'S PROFILECARD SIZING/BORDERS/MARGINS
-          style={{ width: "65%", marginLeft: "15%", height: "80vh", marginBottom: "5%"}}
+          style={{
+            width: "65%",
+            marginLeft: "15%",
+            height: "80vh",
+            marginBottom: "5%",
+          }}
         >
           <h3 style={{ textAlign: "center" }}>
             {this.props.first_name} {this.props.last_name}
@@ -30,7 +36,7 @@ export class ProfileCard extends Component {
               marginTop: "20px",
               marginLeft: "25%",
               objectFit: "cover",
-              display: "flex"
+              display: "flex",
             }}
           />
           <br></br>
@@ -39,29 +45,31 @@ export class ProfileCard extends Component {
           <p>Age: {this.props.age}</p>
           <p>Current Injury Type: {this.props.current_injury_type}</p>
           <div className="align-to-bottom">
-          <p>
-            Progress:{" "}
+            <p>
+              Current Progress: <ReportPageHelper props={this.props} />
+              {/*
             <CircularProgressWithLabel
               variant="determinate"
               value={this.props.progress}
             />
-          </p>
-          <Link to={"/patientprofile/" + this.props.id}>
-            <Button
-              style={{
-                width: "80px", // whatever your button's width
-                margin: "0 auto", // auto left/right margins
-                display: "block",
-                /*
+            */}
+            </p>
+            <Link to={"/patientprofile/" + this.props.id}>
+              <Button
+                style={{
+                  width: "80px", // whatever your button's width
+                  margin: "0 auto", // auto left/right margins
+                  display: "block",
+                  /*
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 */
-              }}
-            >
-              Profile
-            </Button>
-          </Link>
+                }}
+              >
+                Profile
+              </Button>
+            </Link>
           </div>
         </Card>
       </>

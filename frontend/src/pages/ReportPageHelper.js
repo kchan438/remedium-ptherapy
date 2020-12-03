@@ -2,25 +2,21 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PEOPLE_MOCK_DATA from "../components/PEOPLE_MOCK_DATA";
 import PATIENT_PROGRESS from "../components/PATIENT_PROGRESS";
-import { addMilliseconds, differenceInDays } from "date-fns";
+import { differenceInDays } from "date-fns";
 import Grid from "@material-ui/core/Grid";
-import TestCheckData from "./TestCheckData";
-import axios from "axios";
+import CircularProgressWithLabel from "../components/MaterialUIcomponents/CircularProgressWithLabel";
 
 import { Row, Col, Button } from "react-bootstrap";
 
 import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
 import { ProgressBox1 } from "../components/ProgressBox1/ProgressBox1.js";
 import { ProgressBox2 } from "../components/ProgressBox1/ProgressBox2.js";
-import "../pages/PageStyle.css";
 
 var data = PEOPLE_MOCK_DATA;
-var progressData = PATIENT_PROGRESS;
-//var progressData = [];
+var progressdata = PATIENT_PROGRESS;
 
 const getPatientById = (id) => {
   console.log("inside getPatientById", id);
-
   return data.filter((patient) => {
     return patient.id.toString() === id;
   });
@@ -28,8 +24,7 @@ const getPatientById = (id) => {
 
 const getProgressById = (id) => {
   console.log("inside getProgressById", id);
-
-  return progressData.filter((patient) => {
+  return progressdata.filter((patient) => {
     return patient.id.toString() === id;
   });
 };
@@ -39,38 +34,20 @@ const differenceInDays = (a, b) =>
   Math.floor((a.getTime() - b.getTime()) / (1000 * 60 * 60 * 24));
 */
 
-class ReportPage extends Component {
-  /*
-  componentDidMount() {
-    axios.get("/getAssignedPlans").then((res) => {
-      console.log("/getAssignedPlans res: ", res);
-      console.log(
-        "/getAssignedPlans res.data.data.getVideos: ",
-        res.data.data.getVideos
-      );
-
-      this.setState({ progressData: res.data.data.getVideos });
-    });
-  }
-  */
+class ReportPageHelper extends Component {
   constructor(props) {
     super(props);
+    console.log("props from ReportPageHelper", this.props);
 
-    this.state = {
-      data,
-    };
-
-    console.log("!!!props from ReportPage page", this.props);
-
-    const patient = getPatientById(this.props.match.params.id);
+    const patient = getPatientById(String(this.props.props.id));
     console.log(
-      " getPatientById(this.props.match.params.id)",
-      getPatientById(this.props.match.params.id)
+      " getPatientById(String(this.props.props.id))",
+      getPatientById(String(this.props.props.id))
     );
-    const progress = getProgressById(this.props.match.params.id);
+    const progress = getProgressById(String(this.props.props.id));
     console.log(
-      " getProgressById(this.props.match.params.id)",
-      getProgressById(this.props.match.params.id)
+      " getProgressById(String(this.props.props.id))",
+      getProgressById(String(this.props.props.id))
     );
 
     console.log("checking stored patient: ", patient);
@@ -152,8 +129,8 @@ class ReportPage extends Component {
   displayCompleted(currentProgress, maxProgress, id) {
     console.log("displaywhich props:", id);
     console.log(
-      "getProgressById(this.props.match.params.id)",
-      getProgressById(this.props.match.params.id)
+      "getProgressById(String(this.props.props.id))",
+      getProgressById(String(this.props.props.id))
     );
     <div>checking just in case</div>;
     if (currentProgress >= maxProgress) {
@@ -223,18 +200,6 @@ class ReportPage extends Component {
       this.state.allMaxProgress += maxProgress;
       this.state.allProgressPercentage =
         (this.state.allCurrentProgress / this.state.allMaxProgress) * 100;
-      console.log(
-        "inside this.state.allCurrentProgress",
-        this.state.allCurrentProgress
-      );
-      console.log(
-        "inside this.state.allMaxProgress",
-        this.state.allMaxProgress
-      );
-      console.log(
-        "inside this.state.allProgressPercentage",
-        this.state.allProgressPercentage
-      );
     }
   }
 
@@ -258,7 +223,7 @@ class ReportPage extends Component {
     console.log("maxProgress: ", maxProgress);
     console.log("progressPercentage: ", progressPercentage);
 
-    getProgressById(this.props.match.params.id).map(
+    getProgressById(String(this.props.props.id)).map(
       (chosen) => (
         //chosen.assignstartdate, chosen.assignenddate
         currentProgress.push(
@@ -290,113 +255,51 @@ class ReportPage extends Component {
         )
       )
     );
-
+    {
+      getProgressById(String(this.props.props.id)).map((chosen, idx) =>
+        this.checkIfCompleteHelper(
+          currentProgress[idx],
+          maxProgress[idx],
+          progressPercentage[idx],
+          idx
+        )
+      );
+    }
+    {
+      //I want to return value so that SearchPage gets the progress Value
+      this.state.allProgressPercentage = this.checkIfComplete(
+        this.state.allCurrentProgress,
+        this.state.allMaxProgress,
+        this.state.allProgressPercentage
+      );
+    }
+    /*
+<ProfileCard
+          id={this.state.id}
+          first_name={this.state.first_name}
+          last_name={this.state.last_name}
+          age={this.state.age}
+          location={this.state.location}
+          current_injury_type={this.state.current_injury_type}
+          progress={this.checkIfComplete(
+            this.state.allCurrentProgress,
+            this.state.allMaxProgress,
+            this.state.allProgressPercentage
+          )}
+          avatar={this.state.avatar}
+        />
+*/
     return (
-      <div className="page-background">
-        <br />
-        {/*"Checking database of Assigned Plans: "}
-        <TestCheckData />
-        <br></br>
-        {/* <h1>Progress Report Page</h1> */}
-
-        {/*currentProgress +
-          " day of " +
-          maxProgress +
-          " days total. Progress: " +
-          progressPercentage +
-          "% => " +
-          this.checkIfComplete(
-            currentProgress,
-            maxProgress,
-            progressPercentage
-          ) +
-          "%."*/}
-
-        <Row>
-          <Col>
-            {getProgressById(this.props.match.params.id).map((chosen, idx) =>
-              this.checkIfCompleteHelper(
-                currentProgress[idx],
-                maxProgress[idx],
-                progressPercentage[idx],
-                idx
-              )
-            )}
-            {" AllCurrentProgress: " +
-              this.state.allCurrentProgress +
-              " AllMaxProgress: " +
-              this.state.allMaxProgress +
-              " AllProgressPercentage: " +
-              this.state.allProgressPercentage}
-            {console.log(
-              "!getProgressById(this.props.match.params.id): ",
-              getProgressById(this.props.match.params.id)
-            )}
-            {console.log(
-              "!!this.props.match.params.id: ",
-              this.props.match.params.id
-            )}
-            <ProfileCard
-              id={this.state.id}
-              first_name={this.state.first_name}
-              last_name={this.state.last_name}
-              age={this.state.age}
-              location={this.state.location}
-              current_injury_type={this.state.current_injury_type}
-              progress={this.checkIfComplete(
-                this.state.allCurrentProgress,
-                this.state.allMaxProgress,
-                this.state.allProgressPercentage
-              )}
-              avatar={this.state.avatar}
-            />
-          </Col>
-          <Col>
-            {/*
-            <ProgressBox2
-              cardTitle="Overall Progress/ Combination of completed Assignments and on going assingments"
-              cardBody="*# of Completed exercises / # of total exercises / Progress Bar on Completion*"
-            />
-            <br></br>
-*/}
-            <ProgressBox1
-              cardTitle="Excerises In Progress/On Going Assignments"
-              cardBody={getProgressById(
-                this.props.match.params.id
-              ).map((chosen, idx) =>
-                this.displayInProgress(
-                  currentProgress[idx],
-                  maxProgress[idx],
-                  progressPercentage[idx],
-                  idx
-                )
-              )}
-              /*
-               
-                */
-              //"*Various exercise result items this box will be scrollable*"
-            />
-            <br></br>
-
-            <ProgressBox1
-              cardTitle="Completed Exercises/Completed Assignments"
-              cardBody={getProgressById(
-                this.props.match.params.id
-              ).map((chosen, idx) =>
-                this.displayCompleted(
-                  currentProgress[idx],
-                  maxProgress[idx],
-                  idx
-                )
-              )} //"*Exercise result item in this box will be scrollable*"
-            />
-            <br />
-          </Col>
-          <br></br>
-        </Row>
-      </div>
+      <>
+        {
+          <CircularProgressWithLabel
+            variant="determinate"
+            value={this.state.allProgressPercentage}
+          />
+        }
+      </>
     );
   }
 }
 
-export default withRouter(ReportPage);
+export default withRouter(ReportPageHelper);

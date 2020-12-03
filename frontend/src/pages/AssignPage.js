@@ -16,13 +16,17 @@ import VIDEOS_MOCK_DATA from "../components/Formik/VIDEOS_MOCK_DATA";
 import ReactPlayer from "react-player";
 import * as Yup from "yup";
 import FormikControl from "../components/Formik/FormikControl";
+import PATIENT_PROGRESS from "../components/PATIENT_PROGRESS.json";
+import axios from "axios";
 
 import { DateRange, DateRangePicker } from "react-date-range";
 import "../pages/PageStyle.css"; //for background and some text
+
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
 var data = PEOPLE_MOCK_DATA;
+//const writeJsonFile = require("write-json-file");
 
 const getPatientById = (id) => {
   return data.filter((patient) => {
@@ -37,19 +41,16 @@ function AssignPage(props) {
   console.log("checking stored patient: ", patient);
 
   const videos = VIDEOS_MOCK_DATA;
-  //const [countries, setCountries] = useState([]);
-  //const [loading, setLoading] = useState(false);
+
   const [search, setSearch] = useState("");
   const [filteredVideos, setFilteredVideos] = useState([]);
 
   /*
     useEffect(() => {
-      setLoading(true);
       axios
-        .get("https://restcountries.eu/rest/v2/all")
+        .get("/getAssignedPlans")
         .then((res) => {
           setCountries(res.data);
-          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
@@ -107,19 +108,20 @@ function AssignPage(props) {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   const initialValues = {
-    title: "",
     description: "",
+    title: "",
+    Patient_ID: patient[0].id,
+    assignstartdate: state[0].startDate,
+    assignenddate: state[0].endDate,
     checked: [],
-    start_Date: state[0].startDate,
-    end_Date: state[0].endDate,
   };
 
   const validationSchema = Yup.object({
     title: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
     //checked: Yup.string().required("Required"),
-    //start_Date: Yup.date().required("Required").nullable(),
-    //end_Date: Yup.date().required("Required").nullable(),
+    //assignstartdate: Yup.date().required("Required").nullable(),
+    //assignenddate: Yup.date().required("Required").nullable(),
   });
 
   console.log("state: ", state);
@@ -127,17 +129,39 @@ function AssignPage(props) {
   console.log("state.endDate: ", state[0].endDate);
 
   const onSubmit = async (values) => {
+    let myJSON = JSON.stringify(values);
     await sleep(500);
-    console.log(values);
+    console.log("onSubmit values: ", values);
+    console.log("onSubmit values.description: ", values.description);
+
+    console.log("onSubmit JSON values: ", JSON.stringify(values));
+    console.log("var myJSON: ", myJSON);
+
     alert(JSON.stringify(values, null, 2));
+    axios
+      .post("/exercisePlanAssignment", {
+        description: values.description,
+        title: values.title,
+        Patient_ID: values.Patient_ID,
+        assignstartdate: values.assignstartdate,
+        assignenddate: values.assignenddate,
+        checked: values.checked,
+      })
+      .then((response) => {
+        console.log("onSubmit response: ", response);
+      })
+      .catch((error) => {
+        console.log("onSubmit error: ", error);
+      });
+    //await writeJsonFile("PATIENT_PROGRESS.json", { values });
   };
 
   return (
     <div className="page-background">
-      {/* <h1 style={{ textAlign: "center" }}>
+      <h1 style={{ textAlign: "center" }}>
         Video Assignment Page for{" "}
         {patient[0].first_name + " " + patient[0].last_name}
-      </h1> */}
+      </h1>
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
@@ -156,6 +180,7 @@ function AssignPage(props) {
               style={{
                 width: "400px",
                 paddingTop: "5px",
+                //backgroundColor: "#cfe8fc",
                 height: "50vh",
                 border: "2px solid grey",
                 borderRadius: "5px",
@@ -180,6 +205,7 @@ function AssignPage(props) {
               style={{
                 width: "500px",
                 paddingTop: "5px",
+                //backgroundColor: "#cfe8fc",
                 height: "50vh",
                 border: "2px solid grey",
                 borderRadius: "5px",
@@ -221,7 +247,9 @@ function AssignPage(props) {
               style={{
                 width: "600px",
                 minWidth: "500px",
+
                 paddingTop: "5px",
+                //backgroundColor: "#cfe8fc",
                 height: "800px",
                 border: "2px solid grey",
                 borderRadius: "5px",
@@ -241,12 +269,14 @@ function AssignPage(props) {
                 <label>
                   <Field type="checkbox" name="checked" value={value.video} />
                   {value.exercise}
+                  {/*
                   <ReactPlayer
+                    controls={true}
                     url={value.video}
                     width="400px"
-                    height="200px
-"
+                    height="200px"
                   />
+                  */}
                 </label>
               ))}
             </Grid>

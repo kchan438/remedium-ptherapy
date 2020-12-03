@@ -1,17 +1,29 @@
 import React, { useMemo, useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { Row, Col, Form, Button, Dropdown } from "react-bootstrap";
 import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
 // import ProfilePage from '../pages/ProfilePage/ProfilePage.js';
 import PEOPLE_MOCK_DATA from "../components/PEOPLE_MOCK_DATA";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import PATIENT_PROGRESS from "../components/PATIENT_PROGRESS";
+import { differenceInDays } from "date-fns";
+import ReportPageHelper from "./ReportPageHelper";
 
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "../pages/PageStyle.css";
 
 function SearchPage() {
   const patients = PEOPLE_MOCK_DATA;
+  const progressdata = PATIENT_PROGRESS;
+  console.log("progressdata", progressdata);
+  console.log("progressdata[0]", progressdata[0]);
+  console.log("progressdata[0].id", progressdata[0].id);
+  console.log("progressdata[0].assignenddate", progressdata[0].assignenddate);
+
   const [search, setSearch] = useState("");
   const [filteredFirstName, setFilteredFirstName] = useState([]);
   const [filteredLastName, setFilteredLastName] = useState([]);
+
+  const [progressValue, setProgressValue] = useState(0);
 
   useEffect(() => {
     setFilteredFirstName(
@@ -26,21 +38,54 @@ function SearchPage() {
     );
   }, [search, patients]);
 
-  const patientDetail = (props) => {
-    const { name, flag } = props;
-    return (
-      <>
-        <p>
-          <img
-            src={flag}
-            alt={name}
-            style={{ width: "20px", height: "20px" }}
-          />
-        </p>
-        <p>{name}</p>
-      </>
+  const currentProgress = (props) => {
+    return Math.abs(
+      differenceInDays(
+        new Date(progressdata[props].assignstartdate),
+        new Date()
+      )
     );
   };
+  const maxProgress = (props) => {
+    return Math.abs(
+      differenceInDays(
+        new Date(progressdata[props].assignstartdate),
+        new Date(progressdata[props].assignenddate)
+      )
+    );
+  };
+  const progressPercentage = (props) => {
+    return Math.floor(
+      (Math.abs(
+        differenceInDays(
+          new Date(progressdata[props].assignstartdate),
+          new Date()
+        )
+      ) /
+        Math.abs(
+          differenceInDays(
+            new Date(progressdata[props].assignstartdate),
+            new Date(progressdata[props].assignenddate)
+          )
+        )) *
+        100
+    );
+  };
+
+  const checkProgressId = (props) => {
+    console.log(props);
+
+    if (currentProgress(props) >= maxProgress(props)) {
+      return "100";
+    } else {
+      return progressPercentage(props);
+    }
+  };
+  /*
+  const handleCallback = (childValue) => {
+    setState(childValue);
+  };
+  */
 
   return (
     <div className="page-background">
@@ -55,18 +100,40 @@ function SearchPage() {
         <Row xs="1" sm="2" md="4" className="">
           {filteredFirstName.map((patient, idx) => (
             <div>
-              <ProfileCard
-                id={patient.id}
-                first_name={patient.first_name}
-                last_name={patient.last_name}
-                age={patient.age}
-                location={patient.location}
-                current_injury_type={patient.current_injury_type}
-                progress={patient.progress}
-                avatar={patient.avatar}
-                bio={patient.bio}
-                //style={{ width: "250px", height: "400px" }}
-              />
+              {
+                //get progress value then call circularprogress component
+              }
+              {/*
+                <ReportPageHelper
+                  props={patient}
+                  value={progressValue}
+                  onChangeValue={this.handleCallback}
+                />
+              }
+              {console.log(
+                "<ReportPageHelper props={patient} />: ",
+                <ReportPageHelper
+                  props={patient}
+                  value={progressValue}
+                  onChangeValue={this.handleCallback}
+                />
+              )
+              */}
+
+              {
+                <ProfileCard
+                  id={patient.id}
+                  first_name={patient.first_name}
+                  last_name={patient.last_name}
+                  age={patient.age}
+                  location={patient.location}
+                  current_injury_type={patient.current_injury_type}
+                  progress={checkProgressId(patient.id - 1)}
+                  avatar={patient.avatar}
+                  bio={patient.bio}
+                  //style={{ width: "250px", height: "400px" }}
+                />
+              }
             </div>
           ))}
         </Row>
@@ -122,4 +189,4 @@ const SearchPage = () => {
 }
  */
 
-export default SearchPage;
+export default withRouter(SearchPage);

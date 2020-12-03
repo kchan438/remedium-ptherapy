@@ -1,19 +1,28 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PEOPLE_MOCK_DATA from "../components/PEOPLE_MOCK_DATA";
+import PATIENT_PROGRESS from "../components/PATIENT_PROGRESS";
+import { differenceInDays } from "date-fns";
+import ReportPageHelper from "./ReportPageHelper";
 
 import { Col, Row } from "react-bootstrap";
 
 import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
 import { AboutMe } from "../components/AboutMe/AboutMe.js";
 import { ProfileButtons } from "../components/ProfileButtons/ProfileButtons.js";
-
 import "../pages/PageStyle.css";
 
 var data = PEOPLE_MOCK_DATA;
+var progressdata = PATIENT_PROGRESS;
 
 const getPatientById = (id) => {
   return data.filter((patient) => {
+    return patient.id.toString() === id;
+  });
+};
+
+const getProgressById = (id) => {
+  return progressdata.filter((patient) => {
     return patient.id.toString() === id;
   });
 };
@@ -24,6 +33,7 @@ class ContactPage extends Component {
     console.log("props from Contact page", this.props);
 
     const patient = getPatientById(this.props.match.params.id);
+    const progress = getProgressById(this.props.match.params.id);
 
     console.log("checking stored patient: ", patient);
     let patientId = "not found";
@@ -37,6 +47,10 @@ class ContactPage extends Component {
     let patientInjury = "not found";
     let patientProgress = "not found";
     let patientAvatar = "not found";
+    let progressId = "not found";
+    let progressCompleted = "not found";
+    let progressAssignStartDate = "not found";
+    let progressAssignEndDate = "not found";
 
     if (patient.length > 0) {
       patientId = patient[0].id;
@@ -50,6 +64,10 @@ class ContactPage extends Component {
       patientInjury = patient[0].current_injury_type;
       patientProgress = patient[0].progress;
       patientAvatar = patient[0].avatar;
+      progressId = progress[0].id;
+      progressCompleted = progress[0].completed;
+      progressAssignStartDate = progress[0].assignstartdate;
+      progressAssignEndDate = progress[0].assignenddate;
     }
     this.state = {
       id: patientId,
@@ -63,9 +81,40 @@ class ContactPage extends Component {
       current_injury_type: patientInjury,
       progress: patientProgress,
       avatar: patientAvatar,
+      pid: progressId,
+      pcompleted: progressCompleted,
+      pstartdate: progressAssignStartDate,
+      penddate: progressAssignEndDate,
     };
   }
+  checkIfComplete(currentProgress, maxProgress, progressPercentage) {
+    if (currentProgress >= maxProgress) {
+      return "100";
+    } else {
+      return progressPercentage;
+    }
+  }
+
   render() {
+    var currentProgress = Math.abs(
+      differenceInDays(new Date(this.state.pstartdate), new Date())
+    );
+    var maxProgress = Math.abs(
+      differenceInDays(
+        new Date(this.state.pstartdate),
+        new Date(this.state.penddate)
+      )
+    );
+    var progressPercentage = Math.floor(
+      (Math.abs(differenceInDays(new Date(this.state.pstartdate), new Date())) /
+        Math.abs(
+          differenceInDays(
+            new Date(this.state.pstartdate),
+            new Date(this.state.penddate)
+          )
+        )) *
+        100
+    );
     return (
       <div className="page-background">
         <Row>
@@ -78,9 +127,13 @@ class ContactPage extends Component {
               age={this.state.age}
               location={this.state.location}
               current_injury_type={this.state.current_injury_type}
-              progress={this.state.progress}
+              progress={this.checkIfComplete(
+                currentProgress,
+                maxProgress,
+                progressPercentage
+              )}
               avatar={this.state.avatar}
-            />
+            />{" "}
           </Col>
           <Col>
             <br></br>
@@ -94,7 +147,7 @@ class ContactPage extends Component {
               progress={this.state.progress}
               avatar={this.state.avatar}
             />
-            <AboutMe info={this.state.bio} />
+            <AboutMe info={"Contact Info: " + this.state.email} />
           </Col>
         </Row>
       </div>
