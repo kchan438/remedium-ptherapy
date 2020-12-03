@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './PageStyle.css';
 
 class Register extends Component {
 	constructor(props) {
@@ -40,18 +41,16 @@ class Register extends Component {
 	render() {
 		return (
 			<center>
-				<br></br>
-				<br></br>
-				<div className="register">
+				<div className="page-background">
 					<form onSubmit={this.displayLogin}>
-					<h2>REMEDIUM</h2>
-						<h2>Register</h2>
+					<h2 className="title-text">REMEDIUM</h2>
+						<h2 className="title-text">Register</h2>
 
 						<div className="name">
 							<input
 								type="text"
 								placeholder="First Name"
-								name="fisrtname"
+								name="firstname"
 								value={this.state.firstname}
 								onChange={this.update}
 							/>
@@ -76,7 +75,7 @@ class Register extends Component {
 							/>
 						</div>
 
-						<div className="pasword">
+						<div className="password">
 							<input
 								type="password"
 								placeholder="Password"

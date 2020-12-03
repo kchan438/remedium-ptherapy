@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './PageStyle.css';
+import '../App.css';
 import { Row, Col } from 'react-bootstrap';
 
 class Login extends Component {
@@ -38,12 +38,10 @@ class Login extends Component {
 	render() {
 		return (
 				<center>
-					<br></br>
-					<br></br>
-					<div className="login">
+					<div className="page-background">
 						<form onSubmit={this.displayLogin}>
-						<h2>REMEDIUM</h2>
-							<h2>Login</h2>
+						<h2 className="title-text">REMEDIUM</h2>
+							<h2 className="title-text">Login</h2>
 							<div className="username">
 								<input
 									type="text"
