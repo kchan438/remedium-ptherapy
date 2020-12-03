@@ -10,7 +10,7 @@ function PatientsPage(props) {
       <div>
         <center>
           <SearchBar />
-          <p className="title-text">My Patients</p>
+          <p className="header-text">My Patients</p>
         </center>
       </div>
       <div>

@@ -1,24 +1,35 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PEOPLE_MOCK_DATA from "../components/PEOPLE_MOCK_DATA";
+import USER_UPLOAD_CONTENT from "../components/USER_UPLOAD_CONTENT";
 import PATIENT_PROGRESS from "../components/PATIENT_PROGRESS";
 import { differenceInDays } from "date-fns";
+import ReportPageHelper from "./ReportPageHelper";
+import "../pages/PageStyle.css";
+
+import ReactPlayer from "react-player";
+import Grid from "@material-ui/core/Grid";
 
 import { Row, Col, Button } from "react-bootstrap";
-import "../pages/PageStyle.css";
 
 //Components
 import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
 import { ProfileButtons } from "../components/ProfileButtons/ProfileButtons.js";
 import { AboutMe } from "../components/AboutMe/AboutMe.js";
-import ReportPageHelper from "./ReportPageHelper";
 
 var data = PEOPLE_MOCK_DATA;
-console.log("Checking data: ", data);
+var userUploadContent = USER_UPLOAD_CONTENT;
 var progressdata = PATIENT_PROGRESS;
+console.log("Checking data: ", data);
 
 const getPatientById = (id) => {
   return data.filter((patient) => {
+    return patient.id.toString() === id;
+  });
+};
+
+const getContentById = (id) => {
+  return userUploadContent.filter((patient) => {
     return patient.id.toString() === id;
   });
 };
@@ -29,11 +40,12 @@ const getProgressById = (id) => {
   });
 };
 
-class PatientProfilePage extends Component {
+class UserContentPage extends Component {
   constructor(props) {
     super(props);
     console.log("props from patientProfile page", this.props);
     const patient = getPatientById(this.props.match.params.id);
+    const userUploadContent = getContentById(this.props.match.params.id);
     const progress = getProgressById(this.props.match.params.id);
 
     console.log("checking stored patient: ", patient);
@@ -48,6 +60,10 @@ class PatientProfilePage extends Component {
     let patientInjury = "not found";
     let patientProgress = "not found";
     let patientAvatar = "not found";
+
+    let contentId = "not found";
+    let contentVideo = "not found";
+
     let progressId = "not found";
     let progressCompleted = "not found";
     let progressAssignStartDate = "not found";
@@ -65,6 +81,10 @@ class PatientProfilePage extends Component {
       patientInjury = patient[0].current_injury_type;
       patientProgress = patient[0].progress;
       patientAvatar = patient[0].avatar;
+
+      contentId = userUploadContent[0].id;
+      contentVideo = userUploadContent[0].uploadVideo;
+
       progressId = progress[0].id;
       progressCompleted = progress[0].completed;
       progressAssignStartDate = progress[0].assignstartdate;
@@ -82,6 +102,10 @@ class PatientProfilePage extends Component {
       current_injury_type: patientInjury,
       progress: patientProgress,
       avatar: patientAvatar,
+
+      cid: contentId,
+      cvideo: contentVideo,
+
       pid: progressId,
       pcompleted: progressCompleted,
       pstartdate: progressAssignStartDate,
@@ -129,6 +153,11 @@ class PatientProfilePage extends Component {
               age={this.state.age}
               location={this.state.location}
               current_injury_type={this.state.current_injury_type}
+              progress={this.checkIfComplete(
+                currentProgress,
+                maxProgress,
+                progressPercentage
+              )}
               avatar={this.state.avatar}
             />{" "}
           </Col>
@@ -141,45 +170,29 @@ class PatientProfilePage extends Component {
               age={this.state.age}
               location={this.state.location}
               current_injury_type={this.state.current_injury_type}
+              progress={this.state.progress}
               avatar={this.state.avatar}
             />
-            <AboutMe info={this.state.bio} />
+            <AboutMe
+              info={getContentById(this.props.match.params.id).map(
+                (value, idx) => (
+                  <Grid>
+                    User Upload Content : {idx + 1}
+                    <ReactPlayer
+                      controls={true}
+                      url={value.uploadVideo}
+                      width="400px"
+                      height="200px"
+                    />
+                  </Grid>
+                )
+              )}
+            />
           </Col>
         </Row>
       </div>
-      /*
-      <div>
-        <h4>This is our profile Page!</h4>
-        <h5>ID: {this.state.id}</h5>
-        <h5>
-          Name: {this.state.first_name} {this.state.last_name}
-        </h5>
-        <h5>email: {this.state.email}</h5>
-        <h5>gender: {this.state.gender}</h5>
-        <h5>bio: {this.state.bio}</h5>
-        Assigned Video
-      </div>
-      */
     );
   }
 }
-/*
-const PatientProfilePage = () => {
-    return(
-          <>
-            <Row>
-              <Col>
-                <br></br>
-                <ProfileCard />
-              </Col><Col>
-              <br></br>
-                <ProfileButtons />
-                <AboutMe info="This is the about me section." />
-              </Col>
-            </Row>
-          </>
-    );
-}
-*/
 
-export default withRouter(PatientProfilePage);
+export default withRouter(UserContentPage);

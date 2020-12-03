@@ -1,4 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
+import { Row, Col, Form, Button, Dropdown } from "react-bootstrap";
+
 import style from "./PageStyle.css";
 import Card from "../components/ContentCard";
 import Carousel from "../components/ContentCardHolder";
@@ -7,6 +9,9 @@ import SearchBar from "../components/ContentSearchBar";
 import VIDEOS_MOCK_DATA from "../components/Formik/VIDEOS_MOCK_DATA";
 import ReactPlayer from "react-player";
 import Grid from "@material-ui/core/Grid";
+/*
+  Resource: https://www.youtube.com/playlist?list=PLQSMS0J6JbrKdSOSbyJXaQ_zN_HSSp7zZ
+*/
 
 function ContentPage(props) {
   const videos = VIDEOS_MOCK_DATA;
@@ -33,7 +38,12 @@ function ContentPage(props) {
         {filteredVideos.map((value, idx) => (
           <Grid>
             {value.exercise}
-            <ReactPlayer url={value.video} width="400px" height="200px" />
+            <ReactPlayer
+              controls={true}
+              url={value.video}
+              width="400px"
+              height="200px"
+            />
           </Grid>
         ))}
       </Grid>

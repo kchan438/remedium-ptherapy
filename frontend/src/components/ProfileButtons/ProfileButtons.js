@@ -39,6 +39,7 @@ export class ProfileButtons extends Component {
             Assign
           </Button>
           <Button
+            href={"/usercontent/" + this.props.id}
             id={this.props.id}
             first_name={this.props.first_name}
             last_name={this.props.last_name}

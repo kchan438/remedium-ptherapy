@@ -24,6 +24,7 @@ import SearchPage from "./pages/SearchPage.js";
 import ContentItemPage from "./pages/ContentItemPage.js";
 import ItemPage2 from "./pages/ItemPage2.js";
 import ContactPage from "./pages/ContactPage.js";
+import UserContentPage from "./pages/UserContentPage.js";
 import BodyTrackingPage from "./pages/PoseTrackingPage.js";
 
 class App extends React.Component {
@@ -46,7 +47,8 @@ class App extends React.Component {
         { title: "contentitem", path: "/contentitem" },
         { title: "itempage2", path: "/itempage2" },
         { title: "contact", path: "/contact" },
-        { title: "bodytracking", path: "/bodytracking" },
+        { title: "usercontent", path: "/usercontent" },
+        { title: "bodytracking", path: "/bodytracking" }
       ],
       home: {
         title: "Home Page",
@@ -92,6 +94,9 @@ class App extends React.Component {
       },
       contact: {
         title: "Contact Page",
+      },
+      userContent: {
+        title: "User Content Page",
       },
       bodytracking: {
         title: "Body Tracking Page",
@@ -140,6 +145,7 @@ class App extends React.Component {
                 <Link className="navbar-button" to="/search">
                   Search
                 </Link>
+                
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -249,6 +255,15 @@ class App extends React.Component {
           <Route
             path="/contact/:id"
             render={() => <ContactPage title={this.state.contact.title} />}
+          />
+          <Route
+            exact
+            path="/usercontent/"
+            render={() => <UserContentPage title={this.state.contact.title} />}
+          />
+          <Route
+            path="/usercontent/:id"
+            render={() => <UserContentPage title={this.state.contact.title} />}
           />
           <Route
             path="/bodytracking"
