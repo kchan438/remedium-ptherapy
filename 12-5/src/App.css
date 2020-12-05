@@ -1,0 +1,177 @@
+.App {
+  text-align: center;
+  background-color: rgb(36, 34, 34);
+}
+
+.logo {
+  font-size: calc(10px + 2vmin);
+  color: rgb(36, 34, 34);
+  margin-right: 8vw;
+}
+
+.App-header {
+  background-color: #999ba1;
+  min-height: 8vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: sticky;
+  width: 100%;
+}
+
+.navbar-button {
+  color: black;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.navbar-button:hover {
+  color: rgb(65, 65, 65);
+  animation: pulse 0.5s infinite;
+  text-decoration: none;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgb(36, 34, 34);
+    border-radius: 20px;
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    border-radius: 20px;
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    border-radius: 20px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgb(36, 34, 34);
+    box-shadow: 0 0 0 0 rgb(36, 34, 34);
+    border-radius: 20px;
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    border-radius: 20px;
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    border-radius: 20px;
+  }
+}
+
+/* Collin */
+label {
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: center;
+}
+
+input[type="title"],
+input[type="text"],
+input[type="email"],
+textarea {
+  display: center;
+  width: 450px;
+  height: 100px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: rgb(36, 34, 34);
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: red;
+}
+
+.order-body {
+  white-space: pre-line;
+}
+
+/* //Kolapo */
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login,
+.register {
+  width: 400px;
+}
+
+.login h2,
+.register h2 {
+  font-size: 45px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.login a {
+  text-align: center;
+}
+
+input[type="text"] {
+  background-color: #e6e6e6;
+  color: rgb(36, 34, 34);
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: none;
+  width: 85%;
+  padding: 20px 30px;
+}
+
+input[type="password"] {
+  background-color: #e6e6e6;
+  padding: 20px 30px;
+  color: rgb(36, 34, 34);
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: none;
+  width: 85%;
+}
+
+input[type="submit"] {
+  padding: 15px 0px;
+  background-color: #827ffe;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: none;
+  width: 100%;
+}
+
+.check {
+  font-size: 16px;
+}
