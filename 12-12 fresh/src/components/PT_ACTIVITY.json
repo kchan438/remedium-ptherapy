@@ -1,0 +1,50 @@
+[
+  { "patient_id": 1, "activity": "frame", "date": "2020-12-02T18:01:41Z" },
+  { "patient_id": 1, "activity": "composite", "date": "2020-12-02T03:47:46Z" },
+  { "patient_id": 1, "activity": "Cloned", "date": "2020-12-01T13:46:44Z" },
+  { "patient_id": 1, "activity": "Reduced", "date": "2020-12-03T20:11:16Z" },
+  { "patient_id": 1, "activity": "success", "date": "2020-12-02T04:07:07Z" },
+  {
+    "patient_id": 1,
+    "activity": "even-keeled",
+    "date": "2020-12-02T10:17:34Z"
+  },
+  {
+    "patient_id": 1,
+    "activity": "Customer-focused",
+    "date": "2020-12-04T10:58:30Z"
+  },
+  {
+    "patient_id": 1,
+    "activity": "zero tolerance",
+    "date": "2020-12-03T13:53:25Z"
+  },
+  { "patient_id": 1, "activity": "moderator", "date": "2020-12-03T02:14:16Z" },
+  {
+    "patient_id": 1,
+    "activity": "info-mediaries",
+    "date": "2020-12-02T15:34:50Z"
+  },
+  {
+    "patient_id": 2,
+    "activity": "well-modulated",
+    "date": "2020-12-03T06:58:32Z"
+  },
+  {
+    "patient_id": 2,
+    "activity": "orchestration",
+    "date": "2020-12-04T09:33:52Z"
+  },
+  { "patient_id": 2, "activity": "database", "date": "2020-12-03T19:05:52Z" },
+  { "patient_id": 3, "activity": "Visionary", "date": "2020-12-05T20:41:14Z" },
+  {
+    "patient_id": 3,
+    "activity": "system-worthy",
+    "date": "2020-12-05T23:54:46Z"
+  },
+  { "patient_id": 4, "activity": "Up-sized", "date": "2020-12-05T13:45:26Z" },
+  { "patient_id": 5, "activity": "protocol", "date": "2020-12-01T19:42:07Z" },
+  { "patient_id": 6, "activity": "asymmetric", "date": "2020-12-03T15:06:58Z" },
+  { "patient_id": 7, "activity": "model", "date": "2020-12-03T02:10:13Z" },
+  { "patient_id": 8, "activity": "workforce", "date": "2020-12-05T09:51:12Z" }
+]
