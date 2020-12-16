@@ -1,0 +1,10 @@
+.AboutMe {
+  min-height: 75vh;
+  width: 79.5%;
+  overflow: "auto";
+}
+
+.AboutMeDiv {
+  text-align: left;
+  padding-left: 10px;
+}
