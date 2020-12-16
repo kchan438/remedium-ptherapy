@@ -37,7 +37,7 @@ function ContentPage(props) {
 
         {filteredVideos.map((value, idx) => (
           <Grid>
-            {value.exercise}
+            {<p style={{ color: "Silver" }}>{value.exercise}</p>}
             <ReactPlayer
               controls={true}
               url={value.video}
