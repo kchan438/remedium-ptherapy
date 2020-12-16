@@ -1,0 +1,20 @@
+.DescBox {
+    height: 500px;
+    width: 450px;
+    margin-left: 87px;
+}
+
+.DescBoxDiv {
+    text-align: center;
+    padding-left: 10px;
+}
+
+.addDiv {
+    text-align: right;
+    margin-right: 10px;
+}
+
+.addButton {
+    width: 25%;
+    margin-top: 95%;
+}
