@@ -275,7 +275,7 @@ class UserContentPage extends Component {
                 this.props.match.params.id,
                 this.state.getVideos
               ).map((value, idx) => (
-                <Grid style={{ display: "grid", overflow: "auto" }}>
+                <Grid>
                   User Upload Content : {idx + 1}
                   <br />
                   Upload date: {value.uploadDate}
