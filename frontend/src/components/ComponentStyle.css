@@ -1,0 +1,40 @@
+.c-card{
+    margin: 20px;
+    background-color: #dad4d4;
+    border-radius: 3px;
+    max-width: 306px;
+    font-weight: normal;
+    border-style: solid;
+    border-color: #2c303b;
+}
+
+.patient-card-image{
+    border-radius: 4px;
+    height: 480px;
+    width:300px;
+    object-fit: cover;
+}
+
+.patient-card-info{
+    margin-top: 10px;
+    min-height: 100px;
+}
+
+.card-title{
+    font-size: calc(8px + 1vmin);
+    margin: 0px;
+    text-align: center;
+}
+
+.card-subtitle{
+    font-size: calc(6px + 1vmin);
+    margin: 0px;
+}
+
+.content-card-image{
+    border-radius: 4px;
+    height: 180px;
+    width:300px;
+    object-fit: cover;
+}
+
