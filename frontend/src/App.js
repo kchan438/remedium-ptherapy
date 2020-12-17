@@ -110,34 +110,34 @@ class App extends React.Component {
           <Navbar className="App-header">
             <div className="logo">Remedium</div>
             <Navbar.Collapse id="navbar-toggle">
-              <Nav className="center">
+              <Nav className="center" id="navi">
                 <Link className="navbar-button" to="/home">
                   Home
                 </Link>
                 <Link className="navbar-button" to="/mypatients">
                   Patients
                 </Link>
-                <Link className="navbar-button" to="/upload">
+                {/* <Link className="navbar-button" to="/upload">
                   Upload
-                </Link>
+                </Link> */}
                 <Link className="navbar-button" to="/pings">
                   Pings
                 </Link>
                 <Link className="navbar-button" to="/content">
                   Content
                 </Link>
-                <Link className="navbar-button" to="/profile">
+                {/* <Link className="navbar-button" to="/profile">
                   Profile
-                </Link>
+                </Link> */}
                 <Link className="navbar-button" to="/login">
                   Login
                 </Link>
                 <Link className="navbar-button" to="/register">
                   Register
                 </Link>
-                <Link className="navbar-button" to="/patientprofile">
+                {/* <Link className="navbar-button" to="/patientprofile">
                   Patient Profile
-                </Link>
+                </Link> */}
                 {/* <Link className="navbar-button" to="/assign">Assign Content</Link> */}
                 <Link className="navbar-button" to="/search">
                   Search
