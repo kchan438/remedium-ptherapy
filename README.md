@@ -21,3 +21,8 @@
 | Kolapo Agunbiade  |     Kagunbiade@mail.sfsu.edu           |  kagunbiade                |
 | Andrew Keelin   | akeelin@mail.sfsu.edu | andrewkeelin |
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
+
+How to run project:
+
+1. Navigate into "/backend" directory and use command "node index.js"
+2. Navigate to "frontend" directory and use command "npm start"
