@@ -6,35 +6,14 @@ const cors = require("cors");
 const path = require("path");
 const e = require("express");
 const { json } = require("express");
-const bcrypt = require("bcrypt");
-const session = require("express-session");
-const flash = require("express-flash");
-const passport = require("passport");
 
-const initializePassport = require("./passportConfig");
-const { homedir } = require("os");
-
-initializePassport(passport);
-
-//middleware
 app.use(cors());
 app.use(express.json());
-app.use(flash());
-app.use(session({
-  secret:'secret',
-  resave: false,
-  saveUninitialized: false
-})
-);
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.static('../frontend/build'));
+//app.use(express.static('../frontend/website648'))
+
+app.get("/")
 
 
-
-app.get('*', function(req,res){
-  res.sendFile('../frontend/build/index.html');
-});
 
 app.get("/getAssignedPlans/:id", async (req,res) =>{
   console.log(req.params);
@@ -214,88 +193,9 @@ app.get("/getActivityReport", async (req, res) => {
   }
 });
 
-app.post("/users/register", async (req,res) => {
-
-  let {firstname, lastname, email, password, password1} = req.body;
-  console.log({
-    firstname,
-    lastname,
-    email,
-    password,
-    password1
-  })
-  console.log(typeof password)
-
-  let errors = [];
-  //validate fields are not null
-  if(!firstname || !lastname || !email || !password || !password1){
-    errors.push({message: "Please enter all fields"});
-  }
-
-  //check password length
-  if(password.length < 5){
-    errors.push({message: "Passwor should be at least 5 characters"});
-  }
-
-  //check if passwords are equal
-    console.log(password)
-    console.log(password1)
-  if(!(password === password1)){
-    errors.push({message: "Passwords do not match"});
-  }
-
-  //send errors back to react
-  console.log(errors.length)
-  if(errors.length > 0){
-    console.log(errors)
-  }
-  //if no errors then its passed form validation
-  //encrypting password into db
-  else{
-    //encrpt
-    let hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword)
-    //chekc if email exists
-    db.query(
-      'SELECT * FROM public."Registered_User" WHERE email = $1',[email], (err,results) =>{
-        if(err){
-          console.log(err)
-        }
-        console.log(results.rows);
-        //email already registered
-        if(results.rows.length > 0){
-          return res.render("register", {
-            message: "Email already registered"
-          });
-        }
-        else{
-          console.log("could not email in else statement")
-          db.query(
-            'INSERT INTO public."Registered_User" ("first_Name", "last_Name", email, password) VALUES($1,$2,$3,$4)', [firstname, lastname, email, hashedPassword],
-            (err, results) => {
-              if (err){
-                console.log(err)
-              }
-              console.log(results.rows);
-              console.log("successfully posted")
-              req.flash('success_msg', "you are now registered, please login in");
-              res.redirect("/users/login");
-            }
-          );
-        }
-      }
-    );
-  }
-});
-
-app.post('/users/login', passport.authenticate('local',{
-})
-);
-
-//update filepath to the react build
 app.get("/", function (req, res) {
   res.sendFile(
-    "../build/index.html"
+    "/Users/agunderson/Desktop/csc648/project/frontend/website648/Home.html"
   );
 });
 
@@ -303,6 +203,6 @@ app.get("/backendlead", function (req, res) {
   res.sendFile();
 });
 
-app.listen(8080,'10.168.0.3', () => {
-  console.log("server has started on port")
+app.listen(8080, () => {
+  console.log("server has started on port");
 });
