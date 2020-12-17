@@ -56,12 +56,12 @@ export class ProfileButtons extends Component {
           </Button>
 
           <Button
-            href={"/contact/" + this.props.id}
+            href={"/PTactivity/" + this.props.id}
             id={this.props.id}
             first_name={this.props.first_name}
             last_name={this.props.last_name}
           >
-            Contact
+            PT Activity
           </Button>
 
           {/*"id: " +

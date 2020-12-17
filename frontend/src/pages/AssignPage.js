@@ -25,26 +25,38 @@ import "../pages/PageStyle.css"; //for background and some text
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
-var data = PEOPLE_MOCK_DATA;
+//var data = PEOPLE_MOCK_DATA;
 //const writeJsonFile = require("write-json-file");
 
-const getPatientById = (id) => {
-  return data.filter((patient) => {
-    return patient.id.toString() === id;
+const getPatientById = (id, patients) => {
+  console.log("999CHECKING patients: ", patients);
+  return patients.filter((patient) => {
+    return patient.User_ID.toString() === id;
   });
 };
 
 function AssignPage(props) {
   console.log("props from assignPage: ", props);
-  const patient = getPatientById(props.match.params.id);
+  //const patient = getPatientById(props.match.params.id);
 
-  console.log("checking stored patient: ", patient);
+  //console.log("checking stored patient: ", patient);
 
   const videos = VIDEOS_MOCK_DATA;
 
   const [search, setSearch] = useState("");
   const [filteredVideos, setFilteredVideos] = useState([]);
-
+  const [currentPatients, setCurrentPatients] = useState([]);
+  /*
+  const [selectedPatients, setSelectedPatients] = getPatientById(
+    this.props.match.params.id,
+    this.state.currentPatients
+  );
+  const [selectedBio, setSelectedBio] = useState("");
+  const [selectedFirstName, setSelectedFirstName] = useState("");
+  const [selectedLastName, setSelectedLastName] = useState("");
+  const [selectedEmail, setSelectedEmail] = useState("");
+  const [selectedRegistration_Date, setSelectedRegistration_Date] = useState("");
+  const [selectedID, setSelectedID] = useState("");
   /*
     useEffect(() => {
       axios
@@ -57,7 +69,20 @@ function AssignPage(props) {
         });
     }, []);
     */
-
+  useEffect(() => {
+    axios.get("/getCurrentPatients").then((res) => {
+      console.log("/getCurrentPatients res:", res);
+      console.log(
+        "/getCurrentPatients  res.data.data.currentPatients:",
+        res.data.data.currentPatients
+      );
+      setCurrentPatients(res.data.data.currentPatients);
+      console.log(
+        "CONTINUED/getCurrentPatients  currentPatients:",
+        currentPatients
+      );
+    });
+  }, []);
   useEffect(() => {
     setFilteredVideos(
       videos.filter((video) =>
@@ -66,37 +91,6 @@ function AssignPage(props) {
     );
   }, [search, videos]);
 
-  /*
-    if (loading) {
-      return <p>Loading countries...</p>;
-    }
-    */
-
-  const videoDetail = (props) => {
-    const { name, flag } = props;
-    return (
-      <>
-        <p>
-          <img
-            src={flag}
-            alt={name}
-            style={{ width: "20px", height: "20px" }}
-          />
-        </p>
-        <p>{name}</p>
-      </>
-    );
-  };
-
-  /*
-    const [state, setState] = useState([
-      {
-        startDate: new Date(),
-        endDate: addDays(new Date(), 7),
-        key: "selection",
-      },
-    ]);
-    */
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -110,8 +104,9 @@ function AssignPage(props) {
   const initialValues = {
     description: "",
     title: "",
-    Patient_ID: patient[0].id,
+    Patient_ID: props.match.params.id,
     assignstartdate: state[0].startDate,
+    activitytimestamp: new Date(),
     assignenddate: state[0].endDate,
     checked: [],
   };
@@ -146,6 +141,7 @@ function AssignPage(props) {
         assignstartdate: values.assignstartdate,
         assignenddate: values.assignenddate,
         checked: values.checked,
+        activitytimestamp: values.activitytimestamp,
       })
       .then((response) => {
         console.log("onSubmit response: ", response);
@@ -153,14 +149,12 @@ function AssignPage(props) {
       .catch((error) => {
         console.log("onSubmit error: ", error);
       });
-    //await writeJsonFile("PATIENT_PROGRESS.json", { values });
   };
 
   return (
     <div className="page-background">
-      <h1 style={{ textAlign: "center" }}>
-        Video Assignment Page for{" "}
-        {patient[0].first_name + " " + patient[0].last_name}
+      <h1 style={{ textAlign: "center", color: "Silver" }}>
+        Video Assignment Page for Patient {props.match.params.id}
       </h1>
       <Formik
         enableReinitialize={true}
@@ -269,14 +263,14 @@ function AssignPage(props) {
                 <label>
                   <Field type="checkbox" name="checked" value={value.video} />
                   {value.exercise}
-                  {/*
-                  <ReactPlayer
-                    controls={true}
-                    url={value.video}
-                    width="400px"
-                    height="200px"
-                  />
-                  */}
+                  {
+                    <ReactPlayer
+                      controls={true}
+                      url={value.video}
+                      width="400px"
+                      height="200px"
+                    />
+                  }
                 </label>
               ))}
             </Grid>

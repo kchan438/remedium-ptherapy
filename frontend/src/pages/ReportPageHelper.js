@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PEOPLE_MOCK_DATA from "../components/PEOPLE_MOCK_DATA";
 import PATIENT_PROGRESS from "../components/PATIENT_PROGRESS";
-import { differenceInDays } from "date-fns";
+import { addMilliseconds, differenceInDays } from "date-fns";
 import Grid from "@material-ui/core/Grid";
+import TestCheckData from "./TestCheckData";
+import axios from "axios";
 import CircularProgressWithLabel from "../components/MaterialUIcomponents/CircularProgressWithLabel";
 
 import { Row, Col, Button } from "react-bootstrap";
@@ -11,46 +13,38 @@ import { Row, Col, Button } from "react-bootstrap";
 import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
 import { ProgressBox1 } from "../components/ProgressBox1/ProgressBox1.js";
 import { ProgressBox2 } from "../components/ProgressBox1/ProgressBox2.js";
+import "../pages/PageStyle.css";
 
 var data = PEOPLE_MOCK_DATA;
-var progressdata = PATIENT_PROGRESS;
+var progressData = PATIENT_PROGRESS;
 
-const getPatientById = (id) => {
+const getPatientById = (id, patients) => {
   console.log("inside getPatientById", id);
-  return data.filter((patient) => {
-    return patient.id.toString() === id;
+
+  return patients.filter((patient) => {
+    return patient.User_ID.toString() === id.toString();
   });
 };
 
-const getProgressById = (id) => {
-  console.log("inside getProgressById", id);
-  return progressdata.filter((patient) => {
-    return patient.id.toString() === id;
+const getProgressById = (id, progress) => {
+  console.log("!progress!:", progress);
+  return progress.filter((patient) => {
+    return patient.Patient_ID === id.toString();
   });
 };
-
-/*
-const differenceInDays = (a, b) =>
-  Math.floor((a.getTime() - b.getTime()) / (1000 * 60 * 60 * 24));
-*/
 
 class ReportPageHelper extends Component {
   constructor(props) {
     super(props);
-    console.log("props from ReportPageHelper", this.props);
+    console.log("!!!props from ReportPageHelper page", this.props);
+    console.log("this.props.id)", this.props.id);
 
-    const patient = getPatientById(String(this.props.props.id));
-    console.log(
-      " getPatientById(String(this.props.props.id))",
-      getPatientById(String(this.props.props.id))
-    );
-    const progress = getProgressById(String(this.props.props.id));
-    console.log(
-      " getProgressById(String(this.props.props.id))",
-      getProgressById(String(this.props.props.id))
-    );
+    console.log("this.props.id", this.props.id);
+    console.log("666", this.props.id);
+    //const patient = getPatientById(this.props.id, currentPatients);
+    /*
+    console.log("666 patient", patient);
 
-    console.log("checking stored patient: ", patient);
     let patientId = "not found";
     let patientFirstName = "not found";
     let patientLastName = "not found";
@@ -62,12 +56,6 @@ class ReportPageHelper extends Component {
     let patientInjury = "not found";
     let patientProgress = "not found";
     let patientAvatar = "not found";
-    let progressId = [];
-    let progressTitle = [];
-    let progressDescription = [];
-    let progressVideos = [];
-    let progressAssignStartDate = [];
-    let progressAssignEndDate = [];
 
     if (patient.length > 0) {
       patientId = patient[0].id;
@@ -81,19 +69,10 @@ class ReportPageHelper extends Component {
       patientInjury = patient[0].current_injury_type;
       patientProgress = patient[0].progress;
       patientAvatar = patient[0].avatar;
-
-      progress.map(
-        (chosen) => (
-          progressId.push(chosen.id),
-          progressTitle.push(chosen.title),
-          progressDescription.push(chosen.description),
-          progressVideos.push(chosen.checked),
-          progressAssignStartDate.push(chosen.assignstartdate),
-          progressAssignEndDate.push(chosen.assignenddate)
-        )
-      );
     }
+*/
     this.state = {
+      /*
       id: patientId,
       first_name: patientFirstName,
       last_name: patientLastName,
@@ -105,198 +84,210 @@ class ReportPageHelper extends Component {
       current_injury_type: patientInjury,
       progress: patientProgress,
       avatar: patientAvatar,
-      pid: progressId,
-      ptitle: progressTitle,
-      pdesc: progressDescription,
-      pvids: progressVideos,
-      pstartdate: progressAssignStartDate,
-      penddate: progressAssignEndDate,
+      */
+      progressData: [],
+      selectedProgressData: [],
+      selectedInProgressData: [],
+      calculatedProgressData: 0,
+      finalProgressPercentage: 0,
+      numInProgress: 0,
+      numCompleted: 0,
+      currentPatients: [],
 
       allCurrentProgress: 0,
       allMaxProgress: 0,
       allProgressPercentage: 0,
     };
-    console.log("this.state.pid: ", this.state.pid);
-    console.log("this.state.pid[0 ]: ", this.state.pid[0]);
-
-    console.log("this.state.ptitle: ", this.state.ptitle);
-    console.log("this.state.pdesc: ", this.state.pdesc);
-    console.log("this.state.pvids: ", this.state.pvids);
-    console.log("this.state.pstartdate: ", this.state.pstartdate);
-    console.log("this.state.penddate: ", this.state.penddate);
   }
-
-  displayCompleted(currentProgress, maxProgress, id) {
-    console.log("displaywhich props:", id);
-    console.log(
-      "getProgressById(String(this.props.props.id))",
-      getProgressById(String(this.props.props.id))
-    );
-    <div>checking just in case</div>;
-    if (currentProgress >= maxProgress) {
-      console.log("inside if displaywhich props:", id);
-      return (
-        <Grid
-          container
-          spacing={0}
-          justify="center"
-          alignItems="center"
-          style={{
-            border: "2px solid grey",
-            borderRadius: "5px",
-          }}
-          className="order-body"
-        >
-          {this.state.ptitle[id]} <br />
-          {this.state.pdesc[id]} <br />
-          {this.state.pvids[id]} <br />
-          {this.state.pstartdate[id]} <br />
-          {this.state.penddate[id]} <br />
-        </Grid>
-      );
-    } else {
-      return "none ";
-    }
-  }
-
-  displayInProgress(currentProgress, maxProgress, progressPercentage, id) {
-    if (currentProgress < maxProgress) {
+  componentDidMount() {
+    axios.get("/getAssignedPlans").then((res) => {
+      console.log("/getAssignedPlans res:", res);
       console.log(
-        "this.state.allCurrentProgress",
-        this.state.allCurrentProgress
-      );
-      console.log("this.state.allMaxProgress", this.state.allMaxProgress);
-      console.log(
-        "this.state.allProgressPercentage",
-        this.state.allProgressPercentage
+        "/getAssignedPlans  res.data.data.assignedPlans:",
+        res.data.data.assignedPlans
       );
 
-      return (
-        <Grid
-          container
-          spacing={0}
-          justify="center"
-          alignItems="center"
-          style={{
-            border: "2px solid grey",
-            borderRadius: "5px",
-          }}
-          className="order-body"
-        >
-          {this.state.ptitle[id]} <br />
-          {this.state.pdesc[id]} <br />
-          {this.state.pvids[id]} <br />
-          {this.state.pstartdate[id]} <br />
-          {this.state.penddate[id]} <br />
-        </Grid>
+      this.setState({ progressData: res.data.data.assignedPlans });
+      console.log(
+        "CONTINUED/getAssignedPlans  this.state.progressData:",
+        this.state.progressData
       );
-    } else {
-      return "none ";
-    }
-  }
-  checkIfCompleteHelper(currentProgress, maxProgress, progressPercentage) {
-    if (currentProgress < maxProgress) {
-      this.state.allCurrentProgress += currentProgress;
-      this.state.allMaxProgress += maxProgress;
-      this.state.allProgressPercentage =
-        (this.state.allCurrentProgress / this.state.allMaxProgress) * 100;
-    }
+    });
+    axios.get("/getCurrentPatients").then((res) => {
+      console.log("/getCurrentPatients res:", res);
+      console.log(
+        "/getCurrentPatients  res.data.data.currentPatients:",
+        res.data.data.currentPatients
+      );
+
+      this.setState({ currentPatients: res.data.data.currentPatients });
+      console.log(
+        "CONTINUED/getCurrentPatients  this.state.currentPatients:",
+        this.state.currentPatients
+      );
+    });
   }
 
   checkIfComplete(currentProgress, maxProgress, progressPercentage) {
     console.log("checkIfComplete currentProgress: ", currentProgress);
     console.log("checkIfComplete maxProgress: ", maxProgress);
     console.log("checkIfComplete progressPercentage: ", progressPercentage);
-
     if (currentProgress >= maxProgress) {
+      this.state.numCompleted++;
       return "100";
+    }
+    if (0 > currentProgress) {
+      this.state.numInProgress++;
+      this.state.selectedInProgressData.push(0);
+      return 0;
     } else {
+      this.state.numInProgress++;
+      this.state.selectedInProgressData.push(progressPercentage);
       return progressPercentage;
     }
   }
 
+  finalProgressPercentage(progressPercentage) {
+    if (progressPercentage >= 100) {
+      return "100";
+    }
+    if (0 > progressPercentage) {
+      return "0";
+    } else {
+      return progressPercentage;
+    }
+  }
+  quickCheck() {
+    console.log("***********************");
+    console.log(
+      "QUICKCHECK this.state.numInProgress: ",
+      this.state.numInProgress
+    );
+    if (this.state.numInProgress === 0) {
+      return "Ready To Assign";
+    } else {
+      return (
+        <CircularProgressWithLabel
+          variant="determinate"
+          value={this.state.finalProgressPercentage}
+        />
+      );
+    }
+  }
+
+  resetState() {
+    this.state.calculatedProgressData = 0;
+    this.state.finalProgressPercentage = 0;
+    this.state.numInProgress = 0;
+    this.state.numCompleted = 0;
+  }
+
   render() {
+    console.log("@@@@this.state.progressData: ", this.state.progressData);
     var currentProgress = [];
     var maxProgress = [];
     var progressPercentage = [];
+    /*
+    var patient = getPatientById(
+      this.props.id,
+      this.state.currentPatients
+    );
+    */
+    var selectedPatients = getPatientById(
+      this.props.id,
+      this.state.currentPatients
+    );
+    var selectedBio = "";
+    var selectedFirstName = "";
+    var selectedLastName = "";
+    var selectedEmail = "";
+    var selectedRegistration_Date = "";
+    var selectedID = "";
+
+    console.log("this.state.currentPatients", this.state.currentPatients);
+    console.log("selectedPatients", selectedPatients);
+    selectedPatients.map(
+      (patient) => {
+        selectedBio = patient.bio;
+        selectedFirstName = patient.first_Name;
+        selectedLastName = patient.last_Name;
+        selectedEmail = patient.email;
+        selectedRegistration_Date = patient.Registration_Date;
+        selectedID = patient.User_ID;
+      }
+      //console.log("patient.bio", patient.bio)
+    );
     console.log("currentProgress: ", currentProgress);
     console.log("maxProgress: ", maxProgress);
     console.log("progressPercentage: ", progressPercentage);
 
-    getProgressById(String(this.props.props.id)).map(
+    getProgressById(this.props.id, this.state.progressData).map(
       (chosen) => (
+        console.log("inside map currentProgress: ", currentProgress),
+        console.log("inside map maxProgress: ", maxProgress),
+        console.log("inside map progressPercentage: ", progressPercentage),
         //chosen.assignstartdate, chosen.assignenddate
         currentProgress.push(
-          Math.abs(
-            differenceInDays(new Date(chosen.assignstartdate), new Date())
-          )
+          //Math.abs(
+          -differenceInDays(new Date(chosen.assignstartdate), new Date())
+          //)
         ),
         maxProgress.push(
-          Math.abs(
-            differenceInDays(
-              new Date(chosen.assignstartdate),
-              new Date(chosen.assignenddate)
-            )
+          //Math.abs(
+          -differenceInDays(
+            new Date(chosen.assignstartdate),
+            new Date(chosen.assignenddate)
           )
+          //)
         ),
         progressPercentage.push(
           Math.floor(
-            (Math.abs(
-              differenceInDays(new Date(chosen.assignstartdate), new Date())
-            ) /
-              Math.abs(
-                differenceInDays(
-                  new Date(chosen.assignstartdate),
-                  new Date(chosen.assignenddate)
-                )
+            //Math.abs(
+            (-differenceInDays(new Date(chosen.assignstartdate), new Date()) /
+              //)
+              //Math.abs(
+              -differenceInDays(
+                new Date(chosen.assignstartdate),
+                new Date(chosen.assignenddate)
               )) *
+              //)
               100
           )
         )
       )
     );
-    {
-      getProgressById(String(this.props.props.id)).map((chosen, idx) =>
-        this.checkIfCompleteHelper(
-          currentProgress[idx],
-          maxProgress[idx],
-          progressPercentage[idx],
-          idx
-        )
-      );
-    }
-    {
-      //I want to return value so that SearchPage gets the progress Value
-      this.state.allProgressPercentage = this.checkIfComplete(
-        this.state.allCurrentProgress,
-        this.state.allMaxProgress,
-        this.state.allProgressPercentage
-      );
-    }
-    /*
-<ProfileCard
-          id={this.state.id}
-          first_name={this.state.first_name}
-          last_name={this.state.last_name}
-          age={this.state.age}
-          location={this.state.location}
-          current_injury_type={this.state.current_injury_type}
-          progress={this.checkIfComplete(
-            this.state.allCurrentProgress,
-            this.state.allMaxProgress,
-            this.state.allProgressPercentage
-          )}
-          avatar={this.state.avatar}
-        />
-*/
+    getProgressById(this.props.id, this.state.progressData).map((chosen, idx) =>
+      this.checkIfComplete(
+        currentProgress[idx],
+        maxProgress[idx],
+        progressPercentage[idx]
+      )
+    );
+    this.state.selectedInProgressData.map(
+      (number) => (this.state.calculatedProgressData += number)
+    );
+    this.state.finalProgressPercentage =
+      (this.state.calculatedProgressData /
+        (this.state.selectedInProgressData.length * 100)) *
+      100;
+
     return (
       <>
-        {
-          <CircularProgressWithLabel
-            variant="determinate"
-            value={this.state.allProgressPercentage}
-          />
-        }
+        <br />
+
+        {"In Progress: " + this.state.numInProgress}
+        <br />
+        {"Completed: " + this.state.numCompleted}
+        <br />
+
+        <br />
+
+        {"Current Progress:"}
+        <br />
+
+        {this.quickCheck()}
+        <br />
+        {this.resetState()}
       </>
     );
   }

@@ -2,11 +2,13 @@ import React, { useMemo, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { Row, Col, Form, Button, Dropdown } from "react-bootstrap";
 import { ProfileCard } from "../components/ProfileCard/ProfileCard.js";
+
 // import ProfilePage from '../pages/ProfilePage/ProfilePage.js';
 import PEOPLE_MOCK_DATA from "../components/PEOPLE_MOCK_DATA";
 import PATIENT_PROGRESS from "../components/PATIENT_PROGRESS";
 import { differenceInDays } from "date-fns";
 import ReportPageHelper from "./ReportPageHelper";
+import axios from "axios";
 
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "../pages/PageStyle.css";
@@ -22,21 +24,37 @@ function SearchPage() {
   const [search, setSearch] = useState("");
   const [filteredFirstName, setFilteredFirstName] = useState([]);
   const [filteredLastName, setFilteredLastName] = useState([]);
+  const [currentPatients, setCurrentPatients] = useState([]);
 
   const [progressValue, setProgressValue] = useState(0);
 
   useEffect(() => {
+    axios.get("/getCurrentPatients").then((res) => {
+      console.log("/getCurrentPatients res:", res);
+      console.log(
+        "/getCurrentPatients  res.data.data.currentPatients:",
+        res.data.data.currentPatients
+      );
+      setCurrentPatients(res.data.data.currentPatients);
+      console.log(
+        "CONTINUED/getCurrentPatients  currentPatients:",
+        currentPatients
+      );
+    });
+  }, []);
+
+  useEffect(() => {
     setFilteredFirstName(
-      patients.filter((patient) =>
-        patient.first_name.toLowerCase().includes(search.toLowerCase())
+      currentPatients.filter((patient) =>
+        patient.first_Name.toLowerCase().includes(search.toLowerCase())
       )
     );
     setFilteredLastName(
-      patients.filter((patient) =>
-        patient.last_name.toLowerCase().includes(search.toLowerCase())
+      currentPatients.filter((patient) =>
+        patient.last_Name.toLowerCase().includes(search.toLowerCase())
       )
     );
-  }, [search, patients]);
+  }, [search, currentPatients]);
 
   const currentProgress = (props) => {
     return Math.abs(
@@ -119,18 +137,25 @@ function SearchPage() {
                 />
               )
               */}
+              {console.log("!@#CHECKINGDATABASE#@!")}
+              {console.log("currentPatients", patient)}
+              {console.log("User_ID: ", patient.User_ID)}
+              {console.log("first_Name: ", patient.first_Name)}
+              {console.log("last_Name: ", patient.last_Name)}
+              {console.log("email: ", patient.email)}
+              {console.log("bio: ", patient.bio)}
+              {console.log("Registration_Date: ", patient.Registration_Date)}
 
               {
                 <ProfileCard
-                  id={patient.id}
-                  first_name={patient.first_name}
-                  last_name={patient.last_name}
-                  age={patient.age}
-                  location={patient.location}
-                  current_injury_type={patient.current_injury_type}
-                  progress={checkProgressId(patient.id - 1)}
-                  avatar={patient.avatar}
+                  id={patient.User_ID}
+                  first_name={patient.first_Name}
+                  last_name={patient.last_Name}
+                  email={patient.email}
                   bio={patient.bio}
+                  Registration_Date={patient.Registration_Date}
+                  //progress={checkProgressId(patient.id - 1)}
+                  avatar={patient.avatar}
                   //style={{ width: "250px", height: "400px" }}
                 />
               }
