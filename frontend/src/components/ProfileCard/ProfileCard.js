@@ -9,7 +9,44 @@ import { Card } from "react-bootstrap";
 import ReportPageHelper from "../../pages/ReportPageHelper";
 
 export class ProfileCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: this.props.id,
+      first_name: this.props.first_name,
+      last_name: this.props.last_name,
+      email: this.props.email,
+      avatar: this.props.avatar,
+      bio: this.props.bio,
+      Registration_Date: this.props.Registration_Date,
+    };
+  }
+  quickCheck() {
+    console.log("***********************");
+    console.log(
+      "QUICKCHECK this.props.numInProgress: ",
+      this.props.numInProgress
+    );
+    console.log("QUICKCHECK this.props.first_name: ", this.props.first_name);
+    if (this.props.numInProgress === 0) {
+      return "Ready To Assign";
+    } else {
+      return <ReportPageHelper props={this.props} />;
+    }
+  }
+
   render() {
+    console.log("props from ProfileCard", this.props);
+    console.log("props from ProfileCard", this.state.id);
+    console.log("props from ProfileCard", this.state.first_name);
+    console.log("props from ProfileCard", this.state.last_name);
+
+    console.log("props from ProfileCard", this.state.email);
+
+    console.log("props from ProfileCard", this.state.avatar);
+    console.log("props from ProfileCard", this.state.bio);
+    console.log("props from ProfileCard", this.state.Registration_Date);
+
     return (
       <>
         <Card
@@ -23,11 +60,11 @@ export class ProfileCard extends Component {
           }}
         >
           <h3 style={{ textAlign: "center" }}>
-            {this.props.first_name} {this.props.last_name}
+            {this.props.id} {this.props.first_name} {this.props.last_name}
           </h3>
           <img
             id="profilepic"
-            src={this.props.avatar}
+            src="https://fertilitynetworkuk.org/wp-content/uploads/2017/01/Facebook-no-profile-picture-icon-620x389.jpg"
             alt="No display"
             style={{
               maxWidth: "250px",
@@ -41,12 +78,10 @@ export class ProfileCard extends Component {
           />
           <br></br>
           {/* <p>Full Name</p> */}
-          <p>Location: {this.props.location}</p>
-          <p>Age: {this.props.age}</p>
-          <p>Current Injury Type: {this.props.current_injury_type}</p>
+          <p>email: {this.props.email}</p>
           <div className="align-to-bottom">
             <p>
-              Current Progress: <ReportPageHelper props={this.props} />
+              Exercise Summary: <ReportPageHelper id={this.props.id} />
               {/*
             <CircularProgressWithLabel
               variant="determinate"
@@ -54,7 +89,12 @@ export class ProfileCard extends Component {
             />
             */}
             </p>
-            <Link to={"/patientprofile/" + this.props.id}>
+            <Link
+              to={"/patientprofile/" + this.props.id}
+              id={this.state.id}
+              first_name={this.state.first_name}
+              last_name={this.state.last_name}
+            >
               <Button
                 style={{
                   width: "80px", // whatever your button's width

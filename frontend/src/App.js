@@ -5,7 +5,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import style from "./App.css";
 
-//Spencer's Pages
 import SAMPLE_LOGIN_PAGE from "./pages/SAMPLE_LOGIN_PAGE";
 import HomePage from "./pages/HomePage.js";
 import ContentPage from "./pages/ContentPage.js";
@@ -23,9 +22,9 @@ import ReportPage from "./pages/ReportPage.js";
 import SearchPage from "./pages/SearchPage.js";
 import ContentItemPage from "./pages/ContentItemPage.js";
 import ItemPage2 from "./pages/ItemPage2.js";
-import ContactPage from "./pages/ContactPage.js";
+import PTactivityPage from "./pages/PTactivityPage.js";
 import UserContentPage from "./pages/UserContentPage.js";
-import BodyTrackingPage from "./pages/PoseTrackingPage.js";
+import UploadVideoPage from "./pages/UploadVideoPage.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -46,9 +45,9 @@ class App extends React.Component {
         { title: "report", path: "/progressreport" },
         { title: "contentitem", path: "/contentitem" },
         { title: "itempage2", path: "/itempage2" },
-        { title: "contact", path: "/contact" },
+        { title: "PTactivity", path: "/PTactivity" },
         { title: "usercontent", path: "/usercontent" },
-        { title: "bodytracking", path: "/bodytracking" }
+        { title: "uploadvideo", path: "/uploadvideo" },
       ],
       home: {
         title: "Home Page",
@@ -92,15 +91,15 @@ class App extends React.Component {
       item2: {
         title: "Content Item Page",
       },
-      contact: {
-        title: "Contact Page",
+      PTactivity: {
+        title: "PTactivity Page",
       },
       userContent: {
         title: "User Content Page",
       },
-      bodytracking: {
-        title: "Body Tracking Page",
-      }
+      uploadVideo: {
+        title: "Upload Video Page",
+      },
     };
   }
 
@@ -139,18 +138,16 @@ class App extends React.Component {
                 <Link className="navbar-button" to="/patientprofile">
                   Patient Profile
                 </Link>
-                <Link className="navbar-button" to="/bodytracking">
-                  Body Tracking
-                </Link>
+                {/* <Link className="navbar-button" to="/assign">Assign Content</Link> */}
                 <Link className="navbar-button" to="/search">
                   Search
                 </Link>
-                
               </Nav>
             </Navbar.Collapse>
           </Navbar>
           <Switch>
             <Route exact path="/" component={SAMPLE_LOGIN_PAGE} />
+            <Route exact path="/home" component={SAMPLE_LOGIN_PAGE} />
             <Route exact path="/home:roomId" component={HomePage} />
           </Switch>
           <Route
@@ -225,6 +222,7 @@ class App extends React.Component {
             path="/search"
             render={() => <SearchPage title={this.state.search.title} />}
           />
+
           <Route
             exact
             path="/contentitem"
@@ -249,25 +247,42 @@ class App extends React.Component {
           />
           <Route
             exact
-            path="/contact"
-            render={() => <ContactPage title={this.state.contact.title} />}
+            path="/PTactivity"
+            render={() => (
+              <PTactivityPage title={this.state.PTactivity.title} />
+            )}
           />
           <Route
-            path="/contact/:id"
-            render={() => <ContactPage title={this.state.contact.title} />}
+            path="/PTactivity/:id"
+            render={() => (
+              <PTactivityPage title={this.state.PTactivity.title} />
+            )}
           />
           <Route
             exact
             path="/usercontent/"
-            render={() => <UserContentPage title={this.state.contact.title} />}
+            render={() => (
+              <UserContentPage title={this.state.userContent.title} />
+            )}
           />
           <Route
             path="/usercontent/:id"
-            render={() => <UserContentPage title={this.state.contact.title} />}
+            render={() => (
+              <UserContentPage title={this.state.userContent.title} />
+            )}
           />
           <Route
-            path="/bodytracking"
-            render={() => <BodyTrackingPage title={this.state.bodytracking.title} />}
+            exact
+            path="/uploadvideo/"
+            render={() => (
+              <UploadVideoPage title={this.state.uploadVideo.title} />
+            )}
+          />
+          <Route
+            path="/uploadvideo/:id"
+            render={() => (
+              <UploadVideoPage title={this.state.uploadVideo.title} />
+            )}
           />
         </Container>
       </Router>
