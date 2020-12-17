@@ -125,4 +125,6 @@
 .new-message-input-field,
 .send-message-button {
   border-color: #9a9a9a;
+  width: 100%;
+  display: flex;
 }
